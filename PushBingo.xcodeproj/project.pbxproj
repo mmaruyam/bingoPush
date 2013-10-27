@@ -13,12 +13,27 @@
 		B3C9E4F0180EDEB100A469B6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B3C9E4EE180EDEB100A469B6 /* InfoPlist.strings */; };
 		B3C9E4F2180EDEB100A469B6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B3C9E4F1180EDEB100A469B6 /* main.m */; };
 		B3C9E4F6180EDEB100A469B6 /* PBAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B3C9E4F5180EDEB100A469B6 /* PBAppDelegate.m */; };
-		B3C9E4F8180EDEB100A469B6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B3C9E4F7180EDEB100A469B6 /* Images.xcassets */; };
 		B3C9E4FF180EDEB100A469B6 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3C9E4FE180EDEB100A469B6 /* XCTest.framework */; };
 		B3C9E500180EDEB100A469B6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3C9E4E5180EDEB100A469B6 /* Foundation.framework */; };
 		B3C9E501180EDEB100A469B6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3C9E4E9180EDEB100A469B6 /* UIKit.framework */; };
 		B3C9E509180EDEB100A469B6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B3C9E507180EDEB100A469B6 /* InfoPlist.strings */; };
 		B3C9E50B180EDEB100A469B6 /* PushBingoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B3C9E50A180EDEB100A469B6 /* PushBingoTests.m */; };
+		B3C9E516180EDEC000A469B6 /* PBTopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3C9E515180EDEC000A469B6 /* PBTopViewController.m */; };
+		B3C9E51A180EE0C100A469B6 /* PBGuestTopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3C9E519180EE0C100A469B6 /* PBGuestTopViewController.m */; };
+		B3C9E51D180EE0DA00A469B6 /* PBAdminViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3C9E51C180EE0DA00A469B6 /* PBAdminViewController.m */; };
+		B3C9E52018182E3500A469B6 /* PBGuestInputIDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3C9E51F18182E3500A469B6 /* PBGuestInputIDViewController.m */; };
+		B3C9E52A181B692E00A469B6 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3C9E529181B692E00A469B6 /* FacebookSDK.framework */; };
+		B3C9E52C181B6C4400A469B6 /* FBUserSettingsViewResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B3C9E52B181B6C4400A469B6 /* FBUserSettingsViewResources.bundle */; };
+		B3C9E52E181B6CA500A469B6 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3C9E52D181B6CA500A469B6 /* AdSupport.framework */; };
+		B3C9E530181B6CAE00A469B6 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3C9E52F181B6CAE00A469B6 /* Accounts.framework */; };
+		B3C9E532181B6CBA00A469B6 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B3C9E531181B6CBA00A469B6 /* libsqlite3.dylib */; };
+		B3C9E534181B6CC300A469B6 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3C9E533181B6CC300A469B6 /* Security.framework */; };
+		B3C9E536181B6CCD00A469B6 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3C9E535181B6CCD00A469B6 /* Social.framework */; };
+		B3C9E539181B854C00A469B6 /* PBAdminBingoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3C9E538181B854C00A469B6 /* PBAdminBingoViewController.m */; };
+		B3C9E53E181B8E9C00A469B6 /* PBURLConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = B3C9E53D181B8E9C00A469B6 /* PBURLConnection.m */; };
+		B3C9E545181B9C3900A469B6 /* PBIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = B3C9E544181B9C3900A469B6 /* PBIndicatorView.m */; };
+		B3C9E6CE181BA3CB00A469B6 /* Default_m.png in Resources */ = {isa = PBXBuildFile; fileRef = B3C9E6CC181BA3CB00A469B6 /* Default_m.png */; };
+		B3C9E6CF181BA3CB00A469B6 /* Default_xh.png in Resources */ = {isa = PBXBuildFile; fileRef = B3C9E6CD181BA3CB00A469B6 /* Default_xh.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,12 +57,41 @@
 		B3C9E4F3180EDEB100A469B6 /* PushBingo-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PushBingo-Prefix.pch"; sourceTree = "<group>"; };
 		B3C9E4F4180EDEB100A469B6 /* PBAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PBAppDelegate.h; sourceTree = "<group>"; };
 		B3C9E4F5180EDEB100A469B6 /* PBAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PBAppDelegate.m; sourceTree = "<group>"; };
-		B3C9E4F7180EDEB100A469B6 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		B3C9E4FD180EDEB100A469B6 /* PushBingoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PushBingoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3C9E4FE180EDEB100A469B6 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		B3C9E506180EDEB100A469B6 /* PushBingoTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PushBingoTests-Info.plist"; sourceTree = "<group>"; };
 		B3C9E508180EDEB100A469B6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B3C9E50A180EDEB100A469B6 /* PushBingoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PushBingoTests.m; sourceTree = "<group>"; };
+		B3C9E514180EDEC000A469B6 /* PBTopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBTopViewController.h; sourceTree = "<group>"; };
+		B3C9E515180EDEC000A469B6 /* PBTopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBTopViewController.m; sourceTree = "<group>"; };
+		B3C9E518180EE0C100A469B6 /* PBGuestTopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBGuestTopViewController.h; sourceTree = "<group>"; };
+		B3C9E519180EE0C100A469B6 /* PBGuestTopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBGuestTopViewController.m; sourceTree = "<group>"; };
+		B3C9E51B180EE0DA00A469B6 /* PBAdminViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBAdminViewController.h; sourceTree = "<group>"; };
+		B3C9E51C180EE0DA00A469B6 /* PBAdminViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBAdminViewController.m; sourceTree = "<group>"; };
+		B3C9E51E18182E3500A469B6 /* PBGuestInputIDViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBGuestInputIDViewController.h; sourceTree = "<group>"; };
+		B3C9E51F18182E3500A469B6 /* PBGuestInputIDViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBGuestInputIDViewController.m; sourceTree = "<group>"; };
+		B3C9E522181B68F900A469B6 /* .localized */ = {isa = PBXFileReference; lastKnownFileType = text; path = .localized; sourceTree = "<group>"; };
+		B3C9E523181B68F900A469B6 /* himitu.p12 */ = {isa = PBXFileReference; lastKnownFileType = file; path = himitu.p12; sourceTree = "<group>"; };
+		B3C9E524181B68F900A469B6 /* himitu.pem */ = {isa = PBXFileReference; lastKnownFileType = text; path = himitu.pem; sourceTree = "<group>"; };
+		B3C9E525181B68F900A469B6 /* koukai.pem */ = {isa = PBXFileReference; lastKnownFileType = text; path = koukai.pem; sourceTree = "<group>"; };
+		B3C9E526181B68F900A469B6 /* pingo.pem */ = {isa = PBXFileReference; lastKnownFileType = text; path = pingo.pem; sourceTree = "<group>"; };
+		B3C9E527181B68F900A469B6 /* syoumeisyo.p12 */ = {isa = PBXFileReference; lastKnownFileType = file; path = syoumeisyo.p12; sourceTree = "<group>"; };
+		B3C9E528181B68F900A469B6 /* syoumeisyo.pem */ = {isa = PBXFileReference; lastKnownFileType = text; path = syoumeisyo.pem; sourceTree = "<group>"; };
+		B3C9E529181B692E00A469B6 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../FacebookSDK.framework; sourceTree = "<group>"; };
+		B3C9E52B181B6C4400A469B6 /* FBUserSettingsViewResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = FBUserSettingsViewResources.bundle; path = ../../../../../Documents/FacebookSDK/FacebookSDK.framework/Versions/A/Resources/FBUserSettingsViewResources.bundle; sourceTree = "<group>"; };
+		B3C9E52D181B6CA500A469B6 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		B3C9E52F181B6CAE00A469B6 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
+		B3C9E531181B6CBA00A469B6 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		B3C9E533181B6CC300A469B6 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		B3C9E535181B6CCD00A469B6 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		B3C9E537181B854C00A469B6 /* PBAdminBingoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBAdminBingoViewController.h; sourceTree = "<group>"; };
+		B3C9E538181B854C00A469B6 /* PBAdminBingoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBAdminBingoViewController.m; sourceTree = "<group>"; };
+		B3C9E53C181B8E9C00A469B6 /* PBURLConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBURLConnection.h; sourceTree = "<group>"; };
+		B3C9E53D181B8E9C00A469B6 /* PBURLConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBURLConnection.m; sourceTree = "<group>"; };
+		B3C9E543181B9C3900A469B6 /* PBIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBIndicatorView.h; sourceTree = "<group>"; };
+		B3C9E544181B9C3900A469B6 /* PBIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBIndicatorView.m; sourceTree = "<group>"; };
+		B3C9E6CC181BA3CB00A469B6 /* Default_m.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default_m.png; path = ../../../Default_m.png; sourceTree = "<group>"; };
+		B3C9E6CD181BA3CB00A469B6 /* Default_xh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default_xh.png; path = ../../../Default_xh.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +99,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B3C9E536181B6CCD00A469B6 /* Social.framework in Frameworks */,
+				B3C9E534181B6CC300A469B6 /* Security.framework in Frameworks */,
+				B3C9E532181B6CBA00A469B6 /* libsqlite3.dylib in Frameworks */,
+				B3C9E530181B6CAE00A469B6 /* Accounts.framework in Frameworks */,
+				B3C9E52E181B6CA500A469B6 /* AdSupport.framework in Frameworks */,
+				B3C9E52A181B692E00A469B6 /* FacebookSDK.framework in Frameworks */,
 				B3C9E4E8180EDEB100A469B6 /* CoreGraphics.framework in Frameworks */,
 				B3C9E4EA180EDEB100A469B6 /* UIKit.framework in Frameworks */,
 				B3C9E4E6180EDEB100A469B6 /* Foundation.framework in Frameworks */,
@@ -96,6 +146,14 @@
 		B3C9E4E4180EDEB100A469B6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B3C9E535181B6CCD00A469B6 /* Social.framework */,
+				B3C9E533181B6CC300A469B6 /* Security.framework */,
+				B3C9E531181B6CBA00A469B6 /* libsqlite3.dylib */,
+				B3C9E52F181B6CAE00A469B6 /* Accounts.framework */,
+				B3C9E52D181B6CA500A469B6 /* AdSupport.framework */,
+				B3C9E52B181B6C4400A469B6 /* FBUserSettingsViewResources.bundle */,
+				B3C9E529181B692E00A469B6 /* FacebookSDK.framework */,
+				B3C9E521181B68F900A469B6 /* Documents */,
 				B3C9E4E5180EDEB100A469B6 /* Foundation.framework */,
 				B3C9E4E7180EDEB100A469B6 /* CoreGraphics.framework */,
 				B3C9E4E9180EDEB100A469B6 /* UIKit.framework */,
@@ -107,10 +165,17 @@
 		B3C9E4EB180EDEB100A469B6 /* PushBingo */ = {
 			isa = PBXGroup;
 			children = (
+				B3C9E53B181B8E6500A469B6 /* Library */,
+				B3C9E53A181B858700A469B6 /* Admin */,
 				B3C9E4F4180EDEB100A469B6 /* PBAppDelegate.h */,
 				B3C9E4F5180EDEB100A469B6 /* PBAppDelegate.m */,
-				B3C9E4F7180EDEB100A469B6 /* Images.xcassets */,
 				B3C9E4EC180EDEB100A469B6 /* Supporting Files */,
+				B3C9E514180EDEC000A469B6 /* PBTopViewController.h */,
+				B3C9E515180EDEC000A469B6 /* PBTopViewController.m */,
+				B3C9E518180EE0C100A469B6 /* PBGuestTopViewController.h */,
+				B3C9E519180EE0C100A469B6 /* PBGuestTopViewController.m */,
+				B3C9E51E18182E3500A469B6 /* PBGuestInputIDViewController.h */,
+				B3C9E51F18182E3500A469B6 /* PBGuestInputIDViewController.m */,
 			);
 			path = PushBingo;
 			sourceTree = "<group>";
@@ -118,6 +183,8 @@
 		B3C9E4EC180EDEB100A469B6 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B3C9E6CC181BA3CB00A469B6 /* Default_m.png */,
+				B3C9E6CD181BA3CB00A469B6 /* Default_xh.png */,
 				B3C9E4ED180EDEB100A469B6 /* PushBingo-Info.plist */,
 				B3C9E4EE180EDEB100A469B6 /* InfoPlist.strings */,
 				B3C9E4F1180EDEB100A469B6 /* main.m */,
@@ -142,6 +209,43 @@
 				B3C9E507180EDEB100A469B6 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B3C9E521181B68F900A469B6 /* Documents */ = {
+			isa = PBXGroup;
+			children = (
+				B3C9E522181B68F900A469B6 /* .localized */,
+				B3C9E523181B68F900A469B6 /* himitu.p12 */,
+				B3C9E524181B68F900A469B6 /* himitu.pem */,
+				B3C9E525181B68F900A469B6 /* koukai.pem */,
+				B3C9E526181B68F900A469B6 /* pingo.pem */,
+				B3C9E527181B68F900A469B6 /* syoumeisyo.p12 */,
+				B3C9E528181B68F900A469B6 /* syoumeisyo.pem */,
+			);
+			name = Documents;
+			path = ../../../Documents;
+			sourceTree = "<group>";
+		};
+		B3C9E53A181B858700A469B6 /* Admin */ = {
+			isa = PBXGroup;
+			children = (
+				B3C9E51B180EE0DA00A469B6 /* PBAdminViewController.h */,
+				B3C9E51C180EE0DA00A469B6 /* PBAdminViewController.m */,
+				B3C9E537181B854C00A469B6 /* PBAdminBingoViewController.h */,
+				B3C9E538181B854C00A469B6 /* PBAdminBingoViewController.m */,
+			);
+			name = Admin;
+			sourceTree = "<group>";
+		};
+		B3C9E53B181B8E6500A469B6 /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				B3C9E53C181B8E9C00A469B6 /* PBURLConnection.h */,
+				B3C9E53D181B8E9C00A469B6 /* PBURLConnection.m */,
+				B3C9E543181B9C3900A469B6 /* PBIndicatorView.h */,
+				B3C9E544181B9C3900A469B6 /* PBIndicatorView.m */,
+			);
+			name = Library;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -203,6 +307,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = B3C9E4D9180EDEB100A469B6;
 			productRefGroup = B3C9E4E3180EDEB100A469B6 /* Products */;
@@ -221,7 +326,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				B3C9E4F0180EDEB100A469B6 /* InfoPlist.strings in Resources */,
-				B3C9E4F8180EDEB100A469B6 /* Images.xcassets in Resources */,
+				B3C9E6CF181BA3CB00A469B6 /* Default_xh.png in Resources */,
+				B3C9E6CE181BA3CB00A469B6 /* Default_m.png in Resources */,
+				B3C9E52C181B6C4400A469B6 /* FBUserSettingsViewResources.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -241,7 +348,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				B3C9E4F6180EDEB100A469B6 /* PBAppDelegate.m in Sources */,
+				B3C9E53E181B8E9C00A469B6 /* PBURLConnection.m in Sources */,
+				B3C9E51A180EE0C100A469B6 /* PBGuestTopViewController.m in Sources */,
+				B3C9E545181B9C3900A469B6 /* PBIndicatorView.m in Sources */,
+				B3C9E539181B854C00A469B6 /* PBAdminBingoViewController.m in Sources */,
 				B3C9E4F2180EDEB100A469B6 /* main.m in Sources */,
+				B3C9E52018182E3500A469B6 /* PBGuestInputIDViewController.m in Sources */,
+				B3C9E51D180EE0DA00A469B6 /* PBAdminViewController.m in Sources */,
+				B3C9E516180EDEC000A469B6 /* PBTopViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -300,7 +414,8 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Takumi Yamamoto (5QAVBTC99H)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Takumi Yamamoto (5QAVBTC99H)";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -339,7 +454,8 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Takumi Yamamoto (5QAVBTC99H)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Takumi Yamamoto (5QAVBTC99H)";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -359,7 +475,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Takumi Yamamoto (5QAVBTC99H)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Takumi Yamamoto (5QAVBTC99H)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/takuyama/Desktop,
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PushBingo/PushBingo-Prefix.pch";
 				INFOPLIST_FILE = "PushBingo/PushBingo-Info.plist";
@@ -372,7 +493,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Takumi Yamamoto (5QAVBTC99H)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/takuyama/Desktop,
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PushBingo/PushBingo-Prefix.pch";
 				INFOPLIST_FILE = "PushBingo/PushBingo-Info.plist";
@@ -442,6 +567,7 @@
 				B3C9E510180EDEB100A469B6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B3C9E511180EDEB100A469B6 /* Build configuration list for PBXNativeTarget "PushBingoTests" */ = {
 			isa = XCConfigurationList;
@@ -450,6 +576,7 @@
 				B3C9E513180EDEB100A469B6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

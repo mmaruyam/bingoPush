@@ -7,16 +7,56 @@
 //
 
 #import "PBAppDelegate.h"
+#import "PBTopViewController.h"
 
 @implementation PBAppDelegate
 
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+    
+    NSLog(@"FBLogin sourceApplication");
+    
+    // attempt to extract a token from the url
+    return [FBAppCall handleOpenURL:url
+                  sourceApplication:sourceApplication
+                        withSession:self.session];
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
+    
+    [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge
+                                                                           | UIRemoteNotificationTypeSound
+                                                                           | UIRemoteNotificationTypeAlert)];
+    
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
+    
+    PBTopViewController* pbTopCon = [[PBTopViewController alloc] init];
+    [pbTopCon setTitle:@"トップページ"];
+    UINavigationController* naviCon = [[UINavigationController alloc] initWithRootViewController:pbTopCon];
+    self.window.rootViewController = naviCon;
+
     return YES;
+}
+
+// デバイストークンを受信した際の処理
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)devToken {
+    NSMutableString *tokenId = [[NSMutableString alloc] initWithString:[NSString stringWithFormat:@"%@",devToken]];
+    [tokenId setString:[tokenId stringByReplacingOccurrencesOfString:@" " withString:@""]]; //余計な文字を消す
+    [tokenId setString:[tokenId stringByReplacingOccurrencesOfString:@"<" withString:@""]];
+    [tokenId setString:[tokenId stringByReplacingOccurrencesOfString:@">" withString:@""]];
+    NSLog(@"deviceToken: %@", tokenId);
+    
+    NSUserDefaults *userDef = [NSUserDefaults standardUserDefaults];
+    [userDef setObject:tokenId forKey:@"DEVICE_TOKEN"];
+    
+}
+
+
+- (void)application:(UIApplication*)application didFailToRegisterForRemoteNotificationsWithError:(NSError*)err{
+    NSLog(@"Errorinregistration:%@",err);
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
@@ -39,11 +79,45 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    
+    NSLog(@"becomeActive");
+    [FBAppEvents activateApp];
+    
+    [FBAppCall handleDidBecomeActiveWithSession:self.session];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    [self.session close];
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+
+    NSLog(@"hogehoge - %@",userInfo);
+    
+    NSLog(@"remote notification: %@",[userInfo description]);
+    NSDictionary *apsInfo = [userInfo objectForKey:@"aps"];
+    
+    NSString *alert = [apsInfo objectForKey:@"alert"];
+    NSLog(@"Received Push Alert: %@", alert);
+    
+    /*
+    NSString *sound = [apsInfo objectForKey:@"sound"];
+    NSLog(@"Received Push Sound: %@", sound);
+    AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
+    */
+    
+    NSString *badge = [apsInfo objectForKey:@"badge"];
+    NSLog(@"Received Push Badge: %@", badge);
+    application.applicationIconBadgeNumber = [[apsInfo objectForKey:@"badge"] integerValue];
+
+    
+    
+    UIAlertView *pushAlert = [[UIAlertView alloc] initWithTitle:@"info" message:[[userInfo objectForKey:@"aps"] objectForKey:@"alert"]
+                              delegate:self cancelButtonTitle:@"確認" otherButtonTitles:nil];
+    [pushAlert show];
+    
 }
 
 @end
