@@ -11,6 +11,6 @@
 @interface PBTopViewController : UIViewController
 {
     UIButton* buttonLoginLogout;
-    UITextView* textNoteOrLink;
+    UILabel* welcome;
 }
 @end

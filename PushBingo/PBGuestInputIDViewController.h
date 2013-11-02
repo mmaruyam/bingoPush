@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PBGuestInputIDViewController : UIViewController
-
+@interface PBGuestInputIDViewController : UIViewController<UITextFieldDelegate>
+{
+    UITextField *tf;
+}
 @end

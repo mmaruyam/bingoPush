@@ -11,6 +11,7 @@
 #import "PBGuestInputIDViewController.h"
 #import "PBAppDelegate.h"
 #import "PBURLConnection.h"
+#import <QuartzCore/QuartzCore.h>
 
 
 @interface PBTopViewController ()
@@ -33,10 +34,22 @@
     self = [super init];
     
     if(self){
-        
+        UIBarButtonItem *btn =
+        [[UIBarButtonItem alloc]
+         initWithBarButtonSystemItem:UIBarButtonSystemItemCompose
+         target:self  // デリゲートのターゲットを指定
+         action:@selector(tapKiyaku)  // ボタンが押されたときに呼ばれるメソッドを指定
+         ];
+        self.navigationItem.rightBarButtonItem = btn;
+
     }
     
     return self;
+}
+
+-(void)tapKiyaku:(id)sender
+{
+    NSLog(@"hogehogehogehoeg kiyaku ");
 }
 
 - (void)viewDidLoad
@@ -45,34 +58,57 @@
     NSLog(@"viewdid");
     
     
+    welcome = [[UILabel alloc] initWithFrame:CGRectMake(15,70, self.view.frame.size.width - 15, 40)];
+    welcome.text = @"まずはログインしてください。";
+    welcome.font = [UIFont systemFontOfSize:16.0f];
+    welcome.textAlignment = NSTextAlignmentCenter;
+    welcome.textColor = [UIColor blackColor];
+    [self.view addSubview:welcome];
     
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     UIButton *adminBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    adminBtn.frame = CGRectMake(80, 80, 100, 30);
-    [adminBtn setTitle:@"Admin" forState:UIControlStateNormal];
+    adminBtn.frame = CGRectMake((self.view.frame.size.width - 150)/2, 270, 150, 44);
+    [adminBtn setTitle:@"つくる" forState:UIControlStateNormal];
+    adminBtn.titleLabel.font = [UIFont boldSystemFontOfSize:18.0f];
+    [adminBtn setTintColor:[UIColor whiteColor]];
+    [adminBtn setBackgroundColor:[UIColor colorWithRed:1.0 green:0.078 blue:0.576 alpha:1.0]];
+    adminBtn.layer.cornerRadius = 6;
+    adminBtn.clipsToBounds = true;
     adminBtn.tag = 1;
-    [adminBtn addTarget:self action:@selector(tapButton:) forControlEvents:UIControlEventTouchDown];
+    [adminBtn addTarget:self action:@selector(tapButton:) forControlEvents:UIControlEventTouchUpInside];
+    [adminBtn addTarget:self action:@selector(changeGray:) forControlEvents:UIControlEventTouchDown];
+    [adminBtn addTarget:self action:@selector(changeNormal:) forControlEvents:UIControlEventTouchUpInside | UIControlEventTouchUpOutside];
+
     [self.view addSubview:adminBtn];
     
     UIButton *guestBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    guestBtn.frame = CGRectMake(80, 120, 100, 30);
-    [guestBtn setTitle:@"Guest" forState:UIControlStateNormal];
+    guestBtn.frame = CGRectMake((self.view.frame.size.width - 150)/2, 330, 150, 44);
+    [guestBtn setTitle:@"さんか" forState:UIControlStateNormal];
+    guestBtn.titleLabel.font = [UIFont boldSystemFontOfSize:18.0f];
+    [guestBtn setTintColor:[UIColor whiteColor]];
+    [guestBtn setBackgroundColor:[UIColor colorWithRed:0.0 green:0.749 blue:1.0 alpha:1.0]];
+    guestBtn.layer.cornerRadius = 6;
+    guestBtn.clipsToBounds = true;
     guestBtn.tag = 2;
-    [guestBtn addTarget:self action:@selector(tapButton:) forControlEvents:UIControlEventTouchDown];
+    [guestBtn addTarget:self action:@selector(changeGray:) forControlEvents:UIControlEventTouchDown];
+    [guestBtn addTarget:self action:@selector(changeNormal:) forControlEvents:UIControlEventTouchUpInside | UIControlEventTouchUpOutside];
+    [guestBtn addTarget:self action:@selector(tapButton:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:guestBtn];
     
     buttonLoginLogout = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    buttonLoginLogout.frame = CGRectMake(80, 180, 100, 30);
-    [buttonLoginLogout setTitle:@"Guest" forState:UIControlStateNormal];
+    buttonLoginLogout.frame = CGRectMake((self.view.frame.size.width - 75)/2, 120, 75, 38);
+    [buttonLoginLogout setBackgroundColor:[UIColor colorWithRed:0 green:0.839 blue:0 alpha:1.0]];
+    [buttonLoginLogout setTitle:@"ログイン" forState:UIControlStateNormal];
+    buttonLoginLogout.titleLabel.font = [UIFont boldSystemFontOfSize:14.0f];
+    [buttonLoginLogout setTintColor:[UIColor whiteColor]];
+    buttonLoginLogout.layer.cornerRadius = 12;
+    buttonLoginLogout.clipsToBounds = true;
     buttonLoginLogout.tag = 3;
     [buttonLoginLogout addTarget:self action:@selector(tapButton:) forControlEvents:UIControlEventTouchDown];
     [self.view addSubview:buttonLoginLogout];
     
-    textNoteOrLink = [[UITextView alloc] initWithFrame:CGRectMake(20,230, 300, 200)];
-    textNoteOrLink.editable =  NO;
-    textNoteOrLink.text = @"あいうえお\nかきくけこ";
-    [self.view addSubview:textNoteOrLink];
+    
     
     [self updateView];
     
@@ -99,9 +135,28 @@
     
 }
 
+-(void)changeGray:(id)sender
+{
+    UIButton* targetBtn = sender;
+    [targetBtn setBackgroundColor:[UIColor lightGrayColor]];
+}
+
+-(void)changeNormal:(id)sender
+{
+    UIButton* targetBtn = sender;
+    if(targetBtn.tag == 1){
+        [targetBtn setBackgroundColor:[UIColor colorWithRed:1.0 green:0.078 blue:0.576 alpha:1.0]];
+    }
+    else if(targetBtn.tag == 2){
+        [targetBtn setBackgroundColor:[UIColor colorWithRed:0.0 green:0.749 blue:1.0 alpha:1.0]];
+    }
+}
+
 -(void)tapButton:(id)sender
 {
     UIButton* targetBtn = sender;
+    
+//    [self changeNormal:sender];
     
     if(targetBtn.tag == 1){
         PBAdminViewController* pbAdminCon = [[PBAdminViewController alloc] init];
@@ -143,7 +198,8 @@
     NSLog(@"updateView");
     if (appDelegate.session.isOpen) {
         // valid account UI is shown whenever the session is open
-        [buttonLoginLogout setTitle:@"Log out" forState:UIControlStateNormal];
+        
+        [buttonLoginLogout setTitle:@"ログアウト" forState:UIControlStateNormal];
         
         /*
         [textNoteOrLink setText:[NSString stringWithFormat:@"https://graph.facebook.com/me/friends?access_token=%@",
@@ -151,14 +207,14 @@
          */
         
         NSString* strUrl = [NSString stringWithFormat:@"https://graph.facebook.com/me/?fields=name,id&access_token=%@" , appDelegate.session.accessTokenData.accessToken];
-        [textNoteOrLink setText:strUrl];
+        
         [self getFBProfileData:strUrl];
         
     } else {
         // login-needed account UI is shown whenever the session is closed
-        [buttonLoginLogout setTitle:@"Log in" forState:UIControlStateNormal];
-        [textNoteOrLink setText:@"Login to create a link to fetch account data"];
+        [buttonLoginLogout setTitle:@"ログイン" forState:UIControlStateNormal];
         NSLog(@"no Log in");
+        welcome.text = @"まずはログインしてください。";
     }
 }
 
@@ -182,11 +238,15 @@
 
     [userDef setObject:fbid forKey:@"FACEBOOK_ID"];
     [userDef setObject:fbname forKey:@"FACEBOOK_NAME"];
+    
+    [userDef synchronize];
 
+    welcome.text = [[NSString alloc] initWithFormat:@"%@さん" , fbname];
     
     NSString* params = [[NSString alloc] initWithFormat:@"token=%@&fbName=%@&fbId=%@",token,fbid,fbname];
     
-    [PBURLConnection postUserInfo:params];
+//    [PBURLConnection postUserInfo:params];
+    [PBURLConnection registUserData];
     
 }
 

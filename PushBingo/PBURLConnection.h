@@ -10,10 +10,19 @@
 
 @interface PBURLConnection : NSObject
 
-//ユーザ情報をサーバに登録します
-+(void)postUserInfo:(NSString *)params;
-
 //管理者がpushする用の番号一覧を取得します
 +(NSDictionary *)getPlayBingoNumber;
+
+//pushします
++(NSDictionary *)pushNumber:(NSString *)strNum;
+
+//ユーザ登録
++(void)registUserData;
+
+//ビンゴゲームを生成します
++(NSString *)createBingoTable;
+
+//ビンゴゲームに参加します
++(BOOL)joinPingo:(NSString *)pingoID;
 
 @end

@@ -14,5 +14,6 @@
     NSInteger iBingo;
     NSInteger iReach;
     UILabel* label;
+    NSDictionary* dicMasuData;
 }
 @end

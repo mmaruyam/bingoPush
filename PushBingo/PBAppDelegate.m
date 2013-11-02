@@ -113,6 +113,15 @@
     application.applicationIconBadgeNumber = [[apsInfo objectForKey:@"badge"] integerValue];
 
     
+    NSUserDefaults *userDef = [NSUserDefaults standardUserDefaults];
+    NSArray* pullNem = [userDef objectForKey:@"PULL_NUMBER"];
+    NSMutableArray* maryPullNum = [pullNem mutableCopy];
+    [maryPullNum addObject:[apsInfo objectForKey:@"custom"]];
+    [userDef setObject:maryPullNum forKey:@"PULL_NUMBER"];
+    
+    NSLog(@"mary mary = %@" , maryPullNum);
+    
+    
     
     UIAlertView *pushAlert = [[UIAlertView alloc] initWithTitle:@"info" message:[[userInfo objectForKey:@"aps"] objectForKey:@"alert"]
                               delegate:self cancelButtonTitle:@"確認" otherButtonTitles:nil];

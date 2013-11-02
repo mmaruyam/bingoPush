@@ -30,15 +30,21 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-    
+    indexNum = 0;
     
     [self registPlayBingoNumber];
     
+    UIButton *pullBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    pullBtn.frame = CGRectMake(60, 150, 200, 30);
+    [pullBtn setTitle:@"番号を引く" forState:UIControlStateNormal];
+    pullBtn.tag = 1;
+    [pullBtn addTarget:self action:@selector(tapButton:) forControlEvents:UIControlEventTouchDown];
+    [self.view addSubview:pullBtn];
     
     UIButton *guestBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    guestBtn.frame = CGRectMake(80, 250, 200, 30);
+    guestBtn.frame = CGRectMake(60, 250, 200, 30);
     [guestBtn setTitle:@"Finish BINGO" forState:UIControlStateNormal];
-    guestBtn.tag = 1;
+    guestBtn.tag = 2;
     [guestBtn addTarget:self action:@selector(tapButton:) forControlEvents:UIControlEventTouchDown];
     [self.view addSubview:guestBtn];
     
@@ -48,6 +54,9 @@
 {
     UIButton* targetBtn = sender;
     if(targetBtn.tag == 1){
+        [self pullNumber];
+    }
+    else if(targetBtn.tag == 2){
         [self finishBingo];
     }
 }
@@ -56,6 +65,21 @@
 {
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
+
+-(NSString *)pullNumber
+{
+    NSUserDefaults *userDef = [NSUserDefaults standardUserDefaults];
+    NSArray* ary = [userDef objectForKey:@"ADMIN_PLAY_NUMBER"];
+    
+    NSLog(@"aiuro = %@",[ary objectAtIndex:indexNum]);
+    
+    [PBURLConnection pushNumber:[ary objectAtIndex:indexNum]];
+    
+    indexNum++;
+    
+    return [ary objectAtIndex:indexNum-1];
+}
+
 
 -(void)registPlayBingoNumber
 {
