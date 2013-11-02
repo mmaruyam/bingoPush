@@ -34,20 +34,59 @@
     
     [self registPlayBingoNumber];
     
+    
     UIButton *pullBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    pullBtn.frame = CGRectMake(60, 150, 200, 30);
+    pullBtn.frame = CGRectMake((self.view.frame.size.width - 150)/2, 150, 150, 44);
     [pullBtn setTitle:@"番号を引く" forState:UIControlStateNormal];
+    pullBtn.titleLabel.font = [UIFont boldSystemFontOfSize:18.0f];
+    [pullBtn setTintColor:[UIColor whiteColor]];
+    [pullBtn setBackgroundColor:[UIColor colorWithRed:1.0 green:0.078 blue:0.576 alpha:1.0]];
+    pullBtn.layer.cornerRadius = 6;
+    pullBtn.clipsToBounds = true;
     pullBtn.tag = 1;
-    [pullBtn addTarget:self action:@selector(tapButton:) forControlEvents:UIControlEventTouchDown];
+    [pullBtn addTarget:self action:@selector(tapButton:) forControlEvents:UIControlEventTouchUpInside];
+    [pullBtn addTarget:self action:@selector(changeGray:) forControlEvents:UIControlEventTouchDown];
+    [pullBtn addTarget:self action:@selector(changeNormal:) forControlEvents:UIControlEventTouchUpInside | UIControlEventTouchUpOutside];
     [self.view addSubview:pullBtn];
     
+    NSUserDefaults *userDef = [NSUserDefaults standardUserDefaults];
+    UILabel* statusLabel = [[UILabel alloc] initWithFrame:CGRectMake(10,250,300,50)];
+    NSDictionary* dicStatus = [PBURLConnection getUserStatusFromTableID:[userDef objectForKey:@"BINGO_GAME_ID"]];
+    NSString* status = [[NSString alloc] initWithFormat:@"bingo %@",[dicStatus objectForKey:@"bingo"]];
+    statusLabel.text = status;
+    [self.view addSubview:statusLabel];
+    
     UIButton *guestBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    guestBtn.frame = CGRectMake(60, 250, 200, 30);
+    guestBtn.frame = CGRectMake((self.view.frame.size.width - 150)/2, 350, 150, 30);
     [guestBtn setTitle:@"Finish BINGO" forState:UIControlStateNormal];
+    guestBtn.titleLabel.font = [UIFont boldSystemFontOfSize:18.0f];
+    [guestBtn setTintColor:[UIColor whiteColor]];
+    [guestBtn setBackgroundColor:[UIColor colorWithRed:1.0 green:0.078 blue:0.576 alpha:1.0]];
+    guestBtn.layer.cornerRadius = 6;
+    guestBtn.clipsToBounds = true;
     guestBtn.tag = 2;
-    [guestBtn addTarget:self action:@selector(tapButton:) forControlEvents:UIControlEventTouchDown];
+    [guestBtn addTarget:self action:@selector(tapButton:) forControlEvents:UIControlEventTouchUpInside];
+    [guestBtn addTarget:self action:@selector(changeGray:) forControlEvents:UIControlEventTouchDown];
+    [guestBtn addTarget:self action:@selector(changeNormal:) forControlEvents:UIControlEventTouchUpInside | UIControlEventTouchUpOutside];
     [self.view addSubview:guestBtn];
     
+}
+
+-(void)changeGray:(id)sender
+{
+    UIButton* targetBtn = sender;
+    [targetBtn setBackgroundColor:[UIColor lightGrayColor]];
+}
+
+-(void)changeNormal:(id)sender
+{
+    UIButton* targetBtn = sender;
+    if(targetBtn.tag == 1){
+        [targetBtn setBackgroundColor:[UIColor colorWithRed:1.0 green:0.078 blue:0.576 alpha:1.0]];
+    }
+    else if(targetBtn.tag == 2){
+        [targetBtn setBackgroundColor:[UIColor colorWithRed:0.0 green:0.749 blue:1.0 alpha:1.0]];
+    }
 }
 
 -(void)tapButton:(id)sender
@@ -73,7 +112,11 @@
     
     NSLog(@"aiuro = %@",[ary objectAtIndex:indexNum]);
     
+    
+    NSString* strIndex = [[NSString alloc] initWithFormat:@"%d",indexNum];
     [PBURLConnection pushNumber:[ary objectAtIndex:indexNum]];
+    [PBURLConnection registPushNumberIndex:strIndex];
+    
     
     indexNum++;
     

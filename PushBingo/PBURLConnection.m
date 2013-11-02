@@ -10,6 +10,14 @@
 
 @implementation PBURLConnection
 
+-(id)init
+{
+    self = [super init];
+    return self;
+}
+
+#pragma mark -
+#pragma mark sync connection method
 +(void)postUserInfo:(NSString *)params
 {
     
@@ -97,6 +105,20 @@
     return jsonObj;
 }
 
++(NSDictionary *)getUserStatusFromTableID:(NSString *)tableid
+{
+    NSString *url = [[NSString alloc]initWithFormat:@"http://www1066uj.sakura.ne.jp/bingo/api/entry/getUserStatusCount.php?tableid=%@",tableid];
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
+    NSData *json_data = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
+    
+    NSError *error=nil;
+    
+    id jsonObj = [NSJSONSerialization JSONObjectWithData:json_data options:NSJSONReadingAllowFragments error:&error];
+    
+    return  jsonObj;
+    
+}
+
 +(NSDictionary *)getPlayBingoNumber
 {
     NSString *url = @"http://www1066uj.sakura.ne.jp/bingo/api/entry/getPingoNumber.php";
@@ -113,7 +135,8 @@
 
 +(NSDictionary *)pushNumber:(NSString *)strNum
 {
-    NSString *url = [[NSString alloc] initWithFormat:@"http://www1066uj.sakura.ne.jp/bingo/api/entry/push.php?num=%@",strNum];
+    
+    NSString *url = [[NSString alloc] initWithFormat:@"http://www1066uj.sakura.ne.jp/bingo/api/entry/push.php?tableid=44&num=%@",strNum];
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
     NSData *json_data = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
     
@@ -122,6 +145,119 @@
     id jsonObj = [NSJSONSerialization JSONObjectWithData:json_data options:NSJSONReadingAllowFragments error:&error];
     
     return  jsonObj;
+    
+}
+
++(BOOL)updateUserStatus:(NSString *)strStatus
+{
+    NSUserDefaults *userDef = [NSUserDefaults standardUserDefaults];
+    NSString* fId   = [userDef objectForKey:@"FACEBOOK_ID"];
+    NSString* tId   = [userDef objectForKey:@"BINGO_GAME_ID"];
+    NSString *url = [[NSString alloc] initWithFormat:@"http://www1066uj.sakura.ne.jp/bingo/api/entry/updateUserStatus.php?tableid=%@&userid=%@&status=%@",tId,fId,strStatus];
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
+    NSData *json_data = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
+    
+    NSError *error=nil;
+    
+    id jsonObj = [NSJSONSerialization JSONObjectWithData:json_data options:NSJSONReadingAllowFragments error:&error];
+    
+    return  YES;
+    
+}
+
+
++(BOOL)registPushNumberIndex:(NSString *)index
+{
+    NSUserDefaults *userDef = [NSUserDefaults standardUserDefaults];
+    NSString* fId   = [userDef objectForKey:@"FACEBOOK_ID"];
+    NSString* tId   = [userDef objectForKey:@"BINGO_GAME_ID"];
+    
+    NSString *url = [[NSString alloc] initWithFormat:@"http://www1066uj.sakura.ne.jp/bingo/api/entry/updatePushedNumberIndex.php?userid=%@&tableid=%@&index=%@",fId,tId,index];
+    NSLog(@"ひいた　%@",url);
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
+    NSData *json_data = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
+    
+    NSError *error=nil;
+    
+    id jsonObj = [NSJSONSerialization JSONObjectWithData:json_data options:NSJSONReadingAllowFragments error:&error];
+    
+    NSLog(@"ひいた番号を登録しました %@ , %@",jsonObj,error);
+    
+    return  YES;
+}
+
+
+
+/*************************************/
+/*                                   */
+/*           非同期通信系              */
+/*                                   */
+/*************************************/
+
+#pragma mark -
+#pragma mark async connection method
+/// サーバからレスポンスが送られてきたときのデリゲート
+- (void)connection:(NSURLConnection *)i_connection didReceiveResponse:(NSURLResponse *)i_response
+{
+    //デリゲート側に実装されている場合はダミー
+    
+    NSLog(@"received responce");
+}
+
+/// サーバからデータが送られてきたときのデリゲート
+- (void)connection:(NSURLConnection *)i_connection didReceiveData:(NSData *)i_data
+{
+    //デリゲート側に実装されている場合はダミー
+    
+    NSLog(@"received data");
+    NSLog(@"data = %@",i_data);
+}
+
+/// データのロードか完了した時のデリゲート
+- (void)connectionDidFinishLoading:(NSURLConnection *)i_connection
+{
+    //デリゲート側に実装されている場合はダミー
+    
+    NSLog(@"load complete");
+    
+    NSLog(@"%@" , [self.delegate class]);
+    
+    [self.delegate finishExecute];
+    
+    
+}
+
+
+-(void)finishExecute
+{
+    //デリゲート側に実装されている場合はダミー
+}
+
+/// サーバからエラーが返されたときのデリゲート
+- (void)connection:(NSURLConnection *)i_connection didFailWithError:(NSError *)i_error
+{
+    NSLog(@"received error");
+}
+
+- (void) addUrl:(NSString *)strUrl
+{
+    requestURL = [NSURL URLWithString:strUrl];
+}
+
+- (void) execute
+{
+    id target;
+    if(self.delegate)
+    {
+        target = self.delegate;
+    }
+    else
+    {
+        target = self;
+    }
+    
+    NSURLRequest* request = [NSURLRequest requestWithURL:requestURL];
+    [NSURLConnection connectionWithRequest:request delegate:target];
     
 }
 

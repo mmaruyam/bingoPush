@@ -11,6 +11,7 @@
 #import "PBGuestInputIDViewController.h"
 #import "PBAppDelegate.h"
 #import "PBURLConnection.h"
+#import "PBAboutThisAppViewController.h"
 #import <QuartzCore/QuartzCore.h>
 
 
@@ -38,7 +39,7 @@
         [[UIBarButtonItem alloc]
          initWithBarButtonSystemItem:UIBarButtonSystemItemCompose
          target:self  // デリゲートのターゲットを指定
-         action:@selector(tapKiyaku)  // ボタンが押されたときに呼ばれるメソッドを指定
+         action:@selector(tapKiyaku:)  // ボタンが押されたときに呼ばれるメソッドを指定
          ];
         self.navigationItem.rightBarButtonItem = btn;
 
@@ -50,6 +51,14 @@
 -(void)tapKiyaku:(id)sender
 {
     NSLog(@"hogehogehogehoeg kiyaku ");
+    PBAboutThisAppViewController* aboutCnt = [[PBAboutThisAppViewController alloc] init];
+    
+    
+    UINavigationController* naviCnt = [[UINavigationController alloc] init];
+    [naviCnt initWithRootViewController:aboutCnt];
+    
+    
+    [self.navigationController presentViewController:naviCnt animated:YES completion:nil];
 }
 
 - (void)viewDidLoad
@@ -97,7 +106,7 @@
     [self.view addSubview:guestBtn];
     
     buttonLoginLogout = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    buttonLoginLogout.frame = CGRectMake((self.view.frame.size.width - 75)/2, 120, 75, 38);
+    buttonLoginLogout.frame = CGRectMake((self.view.frame.size.width - 80)/2, 120, 80, 38);
     [buttonLoginLogout setBackgroundColor:[UIColor colorWithRed:0 green:0.839 blue:0 alpha:1.0]];
     [buttonLoginLogout setTitle:@"ログイン" forState:UIControlStateNormal];
     buttonLoginLogout.titleLabel.font = [UIFont boldSystemFontOfSize:14.0f];
@@ -159,9 +168,11 @@
 //    [self changeNormal:sender];
     
     if(targetBtn.tag == 1){
+        
         PBAdminViewController* pbAdminCon = [[PBAdminViewController alloc] init];
         [pbAdminCon setTitle:@"管理者ページ"];
         [self.navigationController pushViewController:pbAdminCon animated:YES];
+        
     }
     else if(targetBtn.tag == 2){
         PBGuestInputIDViewController* pbGInputCon = [[PBGuestInputIDViewController alloc] init];
@@ -190,6 +201,11 @@
         }
     }
     
+}
+
+- (void)finishExecute
+{
+    NSLog(@"hgehogehogeohge");
 }
 
 - (void)updateView {

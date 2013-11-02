@@ -16,5 +16,6 @@
     UIActivityIndicatorView  *indicator;
     UIView* indicatorView;
     PBIndicatorView* hoge;
+    UIButton *makeIdBtn;
 }
 @end

@@ -115,9 +115,19 @@
     
     NSUserDefaults *userDef = [NSUserDefaults standardUserDefaults];
     NSArray* pullNem = [userDef objectForKey:@"PULL_NUMBER"];
-    NSMutableArray* maryPullNum = [pullNem mutableCopy];
+    NSMutableArray* maryPullNum = [NSMutableArray array];
+    
+    if(pullNem != nil){
+        NSLog(@"nil nil nil nil ");
+        maryPullNum = [pullNem mutableCopy];
+    }
+    
+//
+    NSLog(@"mary 2 = %@",[apsInfo objectForKey:@"custom"]);
     [maryPullNum addObject:[apsInfo objectForKey:@"custom"]];
+    NSLog(@"mary mary = %@" , maryPullNum);
     [userDef setObject:maryPullNum forKey:@"PULL_NUMBER"];
+    
     
     NSLog(@"mary mary = %@" , maryPullNum);
     

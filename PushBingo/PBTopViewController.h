@@ -13,4 +13,7 @@
     UIButton* buttonLoginLogout;
     UILabel* welcome;
 }
+
+
+
 @end

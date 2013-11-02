@@ -52,7 +52,7 @@
     [joinBtn setBackgroundColor:[UIColor colorWithRed:1.0 green:0.078 blue:0.576 alpha:1.0]];
     joinBtn.layer.cornerRadius = 6;
     joinBtn.clipsToBounds = true;
-    [joinBtn addTarget:self action:@selector(tapDoneButton:) forControlEvents:UIControlEventTouchDown];
+    [joinBtn addTarget:self action:@selector(tapDoneButton:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:joinBtn];
     
 }

@@ -9,6 +9,9 @@
 #import <Foundation/Foundation.h>
 
 @interface PBURLConnection : NSObject
+{
+    NSURL* requestURL;
+}
 
 //管理者がpushする用の番号一覧を取得します
 +(NSDictionary *)getPlayBingoNumber;
@@ -24,5 +27,33 @@
 
 //ビンゴゲームに参加します
 +(BOOL)joinPingo:(NSString *)pingoID;
+
+//ひいた番号を登録します
++(BOOL)registPushNumberIndex:(NSString *)index;
+
+//ユーザステータスを更新します
++(BOOL)updateUserStatus:(NSString *)strStatus;
+
+//ユーザステータスを取得します
++(NSDictionary *)getUserStatusFromTableID:(NSString *)tableid;
+
+/*
+/// サーバからレスポンスが送られてきたときのデリゲート
+- (void)connection:(NSURLConnection *)i_connection didReceiveResponse:(NSURLResponse *)i_response;
+
+/// サーバからデータが送られてきたときのデリゲート
+- (void)connection:(NSURLConnection *)i_connection didReceiveData:(NSData *)i_data;
+
+/// データのロードか完了した時のデリゲート
+- (void)connectionDidFinishLoading:(NSURLConnection *)i_connection;
+
+/// サーバからエラーが返されたときのデリゲート
+- (void)connection:(NSURLConnection *)i_connection didFailWithError:(NSError *)i_error;
+*/
+
+- (void) addUrl:(NSString *)strUr;
+- (void) execute;
+
+@property (strong, nonatomic) id delegate;
 
 @end

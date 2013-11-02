@@ -7,6 +7,7 @@
 //
 
 #import "PBGuestTopViewController.h"
+#import "PBURLConnection.h"
 
 @interface PBGuestTopViewController ()
 
@@ -77,7 +78,37 @@
     
     [self.view addSubview:bingoFrame];
     
+    NSTimer *tm =
+    [NSTimer scheduledTimerWithTimeInterval:3.0f target:self selector:@selector(checkPullNumber:) userInfo:nil repeats:YES
+     ];
+    
 }
+
+-(void)checkPullNumber:(NSTimer *)timer
+{
+    NSUserDefaults *userDef = [NSUserDefaults standardUserDefaults];
+    NSArray* aryPullNumber = [userDef objectForKey:@"PULL_NUMBER"];
+    
+    
+    for(NSString* pull in aryPullNumber){
+        NSInteger index = 0;
+        for(NSString* strindex in dicMasuData){
+            for(NSString* data in [dicMasuData objectForKey:strindex]){
+                NSString* hoge = [[NSString alloc] initWithFormat:@"%@",data];
+                NSString* fuga = [[NSString alloc] initWithFormat:@"%@",pull];
+                if([hoge isEqualToString:fuga]){
+                    UIButton* hogeBtn = [maryBingoMasu objectAtIndex:index];
+                    hogeBtn.enabled = NO;
+                }
+                index++;
+            }
+            
+        }
+    }
+    [self checkBingoStatus];
+    
+}
+
 
 -(NSDictionary *)getBingoMasuData
 {
@@ -101,6 +132,13 @@
     [self checkDiagonalLine];
     
     NSLog(@"bingo = %d, reach = %d",iBingo,iReach);
+    
+    if(0< iBingo){
+        [PBURLConnection updateUserStatus:@"bingo"];
+    }
+    else if(0<iReach){
+        [PBURLConnection updateUserStatus:@"reach"];
+    }
     
     NSString* str = [[NSString alloc] initWithFormat:@"ビンゴ　%d : リーチ %d" , iBingo , iReach];
     label.text = str;
