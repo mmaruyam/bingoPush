@@ -64,9 +64,6 @@
 - (void)viewDidLoad
 {
     
-    NSLog(@"viewdid");
-    
-    
     welcome = [[UILabel alloc] initWithFrame:CGRectMake(15,70, self.view.frame.size.width - 15, 40)];
     welcome.text = @"まずはログインしてください。";
     welcome.font = [UIFont systemFontOfSize:16.0f];

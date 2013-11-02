@@ -14,7 +14,7 @@
 }
 
 //管理者がpushする用の番号一覧を取得します
-+(NSDictionary *)getPlayBingoNumber;
+//+(NSDictionary *)getPlayBingoNumber;
 
 //pushします
 +(NSDictionary *)pushNumber:(NSString *)strNum;

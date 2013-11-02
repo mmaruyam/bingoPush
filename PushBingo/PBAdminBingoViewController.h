@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PBIndicatorView.h"
 
 @interface PBAdminBingoViewController : UIViewController
 {
     NSInteger indexNum;
+    PBIndicatorView* pbIndicator;
 }
 @end

@@ -17,9 +17,8 @@
     if (self) {
         // Initialization code
         
-        UIView* indicatorView = [[UIView alloc] initWithFrame:CGRectMake(120,210,60,60)];
-        indicatorView.backgroundColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.8];
-        
+        indicatorView = [[UIView alloc] initWithFrame:CGRectMake(120,210,60,60)];
+        indicatorView.backgroundColor = [UIColor clearColor];
         indicatorView.layer.cornerRadius = 6;
         indicatorView.clipsToBounds = true;
         
@@ -35,11 +34,13 @@
 
 - (void)startIndicator
 {
+    indicatorView.backgroundColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.8];
     [indicator startAnimating];
 }
 
 - (void)stopIndicator
 {
+    indicatorView.backgroundColor = [UIColor clearColor];
     [indicator stopAnimating];
 }
 

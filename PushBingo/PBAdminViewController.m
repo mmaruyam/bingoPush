@@ -81,6 +81,10 @@
     [startBtn addTarget:self action:@selector(changeNormal:) forControlEvents:UIControlEventTouchUpInside | UIControlEventTouchUpOutside];
     [self.view addSubview:startBtn];
     
+    //インジケータの準備
+    pbIndicator = [[PBIndicatorView alloc] init];
+    [self.view addSubview:pbIndicator];
+    
 }
 
 -(void)changeGray:(id)sender
@@ -116,19 +120,43 @@
     
 }
 
-
-- (void)makeBingoGamgeId
+/// サーバからデータが送られてきたときのデリゲート
+- (void)connection:(NSURLConnection *)i_connection didReceiveData:(NSData *)data
 {
-    NSString* bingoID = [PBURLConnection createBingoTable];
+    //デリゲート側に実装されている場合はダミー
     
-     NSUserDefaults *userDef = [NSUserDefaults standardUserDefaults];
-    [userDef setObject:bingoID forKey:@"BINGO_GAME_ID"];
+    NSLog(@"received data");
+    NSLog(@"data = %@",data);
+    
+    NSError* error;
+    id json = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&error];
+    [pbIndicator stopIndicator];
+    
+    NSLog(@"ビンゴ番号は　%@" , json);
     
     startBtn.enabled = YES;
     [startBtn setBackgroundColor:[UIColor colorWithRed:1.0 green:0.078 blue:0.576 alpha:1.0]];
     
     makeIdBtn.enabled = NO;
     [makeIdBtn setBackgroundColor:[UIColor lightGrayColor]];
+    
+}
+
+- (void)makeBingoGamgeId
+{
+    PBURLConnection* pbUrlCon = [[PBURLConnection alloc] init];
+    pbUrlCon.delegate = self;
+    
+    NSUserDefaults *userDef = [NSUserDefaults standardUserDefaults];
+    NSString* fId   = [userDef objectForKey:@"FACEBOOK_ID"];
+    
+    NSString *url = [[NSString alloc]initWithFormat:@"http://www1066uj.sakura.ne.jp/bingo/api/entry/createBingoTable.php?userid=%@",fId];
+    NSLog(@"url = %@",url);
+    [pbUrlCon addUrl:url];
+    [pbUrlCon execute];
+    
+    [pbIndicator startIndicator];
+    
 }
 
 - (void)didReceiveMemoryWarning

@@ -32,7 +32,8 @@
     
     indexNum = 0;
     
-    [self registPlayBingoNumber];
+    pbIndicator = [[PBIndicatorView alloc] init];
+    [self.view addSubview:pbIndicator];
     
     
     UIButton *pullBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
@@ -51,7 +52,8 @@
     
     NSUserDefaults *userDef = [NSUserDefaults standardUserDefaults];
     UILabel* statusLabel = [[UILabel alloc] initWithFrame:CGRectMake(10,250,300,50)];
-    NSDictionary* dicStatus = [PBURLConnection getUserStatusFromTableID:[userDef objectForKey:@"BINGO_GAME_ID"]];
+//    NSDictionary* dicStatus = [PBURLConnection getUserStatusFromTableID:[userDef objectForKey:@"BINGO_GAME_ID"]];
+    NSDictionary* dicStatus = nil;
     NSString* status = [[NSString alloc] initWithFormat:@"bingo %@",[dicStatus objectForKey:@"bingo"]];
     statusLabel.text = status;
     [self.view addSubview:statusLabel];
@@ -70,6 +72,11 @@
     [guestBtn addTarget:self action:@selector(changeNormal:) forControlEvents:UIControlEventTouchUpInside | UIControlEventTouchUpOutside];
     [self.view addSubview:guestBtn];
     
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [self registPlayBingoNumber];
 }
 
 -(void)changeGray:(id)sender
@@ -126,12 +133,30 @@
 
 -(void)registPlayBingoNumber
 {
+    [pbIndicator startIndicator];
     
+    PBURLConnection* pbUrlCon = [[PBURLConnection alloc] init];
+    pbUrlCon.delegate = self;
+    NSString *url = @"http://www1066uj.sakura.ne.jp/bingo/api/entry/getPingoNumber.php";
+    [pbUrlCon addUrl:url];
+    [pbUrlCon execute];
+
+}
+
+- (void)connection:(NSURLConnection *)i_connection didReceiveData:(NSData *)data
+{
+    [pbIndicator stopIndicator];
     
+    NSLog(@"received data");
+    NSLog(@"data = %@",data);
+    
+    NSError* error;
+    id json = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&error];
     NSUserDefaults *userDef = [NSUserDefaults standardUserDefaults];
-    [userDef setObject:[PBURLConnection getPlayBingoNumber] forKey:@"ADMIN_PLAY_NUMBER"];
+    [userDef setObject:json forKey:@"ADMIN_PLAY_NUMBER"];
     
-    NSLog(@"hogehoge tuitui %@",[PBURLConnection getPlayBingoNumber]);
+    
+    
 }
 
 - (void)didReceiveMemoryWarning

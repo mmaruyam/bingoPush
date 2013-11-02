@@ -11,6 +11,7 @@
 @interface PBIndicatorView : UIView
 {
     UIActivityIndicatorView* indicator;
+    UIView* indicatorView;
 }
 
 - (void)startIndicator;

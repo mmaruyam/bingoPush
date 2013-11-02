@@ -119,6 +119,7 @@
     
 }
 
+/*
 +(NSDictionary *)getPlayBingoNumber
 {
     NSString *url = @"http://www1066uj.sakura.ne.jp/bingo/api/entry/getPingoNumber.php";
@@ -132,6 +133,7 @@
     return  jsonObj;
     
 }
+ */
 
 +(NSDictionary *)pushNumber:(NSString *)strNum
 {
@@ -205,12 +207,17 @@
 }
 
 /// サーバからデータが送られてきたときのデリゲート
-- (void)connection:(NSURLConnection *)i_connection didReceiveData:(NSData *)i_data
+- (void)connection:(NSURLConnection *)i_connection didReceiveData:(NSData *)data
 {
     //デリゲート側に実装されている場合はダミー
     
     NSLog(@"received data");
-    NSLog(@"data = %@",i_data);
+    NSLog(@"data = %@",data);
+    
+    NSError* error;
+    id json = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&error];
+               
+    
 }
 
 /// データのロードか完了した時のデリゲート
@@ -231,6 +238,7 @@
 -(void)finishExecute
 {
     //デリゲート側に実装されている場合はダミー
+    NSLog(@"dummy");
 }
 
 /// サーバからエラーが返されたときのデリゲート
@@ -255,6 +263,7 @@
     {
         target = self;
     }
+    
     
     NSURLRequest* request = [NSURLRequest requestWithURL:requestURL];
     [NSURLConnection connectionWithRequest:request delegate:target];

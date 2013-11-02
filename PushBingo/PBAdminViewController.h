@@ -15,7 +15,7 @@
     UIButton *startBtn;
     UIActivityIndicatorView  *indicator;
     UIView* indicatorView;
-    PBIndicatorView* hoge;
+    PBIndicatorView* pbIndicator;
     UIButton *makeIdBtn;
 }
 @end
