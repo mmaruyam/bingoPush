@@ -111,6 +111,8 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    NSLog(@"kkkkk = %d",self.isLoad);
+    
     PBURLConnection* pbUrlCon = [[PBURLConnection alloc] init];
     pbUrlCon.delegate = self;
     NSString* url = [[NSString alloc] initWithFormat:@"http://www1066uj.sakura.ne.jp/bingo/api/entry/getPushedNumbers.php?tableid=%@",strBingoId];
@@ -130,19 +132,28 @@
     
     for(NSString* pull in aryPullNumber){
         NSInteger index = 0;
-        for(NSString* strindex in dicMasuData){
-            for(NSString* data in [dicMasuData objectForKey:strindex]){
-                NSString* hoge = [[NSString alloc] initWithFormat:@"%@",data];
-                NSString* fuga = [[NSString alloc] initWithFormat:@"%@",pull];
-                if([hoge isEqualToString:fuga]){
+        NSInteger j = 0;
+        NSString* strPullNum = [[NSString alloc] initWithFormat:@"%@",pull];
+        
+        for(int i = 0; i<5;i++){
+            NSString* strIndex = [[NSString alloc] initWithFormat:@"%d",j];
+            for(NSString* data in [dicMasuData objectForKey:strIndex]){
+                NSString* strMasuData = [[NSString alloc] initWithFormat:@"%@",data];
+                
+                
+                if([strMasuData isEqualToString:strPullNum]){
+                    
                     UIButton* hogeBtn = [maryBingoMasu objectAtIndex:index];
+                    
                     hogeBtn.enabled = NO;
                 }
                 index++;
             }
-            
+            j++;
         }
+        
     }
+    
     [self checkBingoStatus];
     
 }
@@ -283,8 +294,9 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
 - (id)makeBingoCard
 {
     NSUserDefaults *userDef = [NSUserDefaults standardUserDefaults];
-    dicMasuData = [userDef objectForKey:BINGO_CARD_DATA];
-    
+    if(self.isLoad){
+        dicMasuData = [userDef objectForKey:BINGO_CARD_DATA];
+    }
     if(dicMasuData){
         NSLog(@"ビンゴカードのデータがありました");
     }
