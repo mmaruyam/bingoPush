@@ -18,8 +18,10 @@
     NSTimer *timerBingoChecker;
     NSString* strBingoId;
     NSArray* aryPullNumber;
-    BOOL* isReachAlert;
+    BOOL isReachAlert;
 }
+
+@property (nonatomic) BOOL isLoad;
 
 - (id)initWithBingoId:(NSString *)bingoId;
 

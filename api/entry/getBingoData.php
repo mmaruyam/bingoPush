@@ -7,10 +7,13 @@ require_once '../cntr/BingoTableManager.class.php';
 
 $userid = $_REQUEST['userid'];
 $tableid = $_REQUEST['tableid'];
-if (empty($userid)) {
+
+/*
+if (empty($tableid)) {
     echo 'false';
     return;
 }
+*/
 
 $obj = new BingoTableManager();
 $tableId = $obj->getMasterTableData($userid, $tableid);

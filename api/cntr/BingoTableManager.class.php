@@ -270,6 +270,7 @@ class BingoTableManager extends BaseDao
     public function getPushUserTokenList($tableId) {
         $tableName = sprintf(self::TEMP_TABLE_NAME_FORMAT, $tableId);
         $query = sprintf(self::GET_PUSH_USER_TOKEN_LIST, $tableName, $tableName);
+error_log('getPushUserTokenList: ' . $query);
         $sth = $this->dbh->prepare($query);
         $result = $sth->execute();
         if ($result == false) {

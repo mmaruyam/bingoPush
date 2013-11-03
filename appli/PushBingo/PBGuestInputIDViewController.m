@@ -187,6 +187,7 @@
                     
                     PBGuestBingoViewController* pbGtopCon = [[PBGuestBingoViewController alloc] initWithBingoId:bingoId];
                     [pbGtopCon setTitle:@"ビンゴページ"];
+                    pbGtopCon.isLoad = NO;
                     [self.navigationController pushViewController:pbGtopCon animated:YES];
                 }
                 else{
@@ -235,6 +236,7 @@
         
         
         PBGuestBingoViewController* pbGtopCon = [[PBGuestBingoViewController alloc] initWithBingoId:bingoId];
+        pbGtopCon.isLoad = YES;
         [pbGtopCon setTitle:@"ビンゴページ"];
         [self.navigationController pushViewController:pbGtopCon animated:YES];
     }
