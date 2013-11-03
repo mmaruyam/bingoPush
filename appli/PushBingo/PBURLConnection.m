@@ -135,10 +135,10 @@
 }
  */
 
-+(NSDictionary *)pushNumber:(NSString *)strNum
++(NSDictionary *)pushNumber:(NSString *)strNum tableID:(NSString *)tableId
 {
     
-    NSString *url = [[NSString alloc] initWithFormat:@"http://www1066uj.sakura.ne.jp/bingo/api/entry/push.php?tableid=44&num=%@",strNum];
+    NSString *url = [[NSString alloc] initWithFormat:@"http://www1066uj.sakura.ne.jp/bingo/api/entry/push.php?tableid=%@&num=%@", tableId, strNum];
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
     NSData *json_data = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
     
@@ -167,13 +167,11 @@
 }
 
 
-+(BOOL)registPushNumberIndex:(NSString *)index
++(BOOL)registPushNumberIndex:(NSString *)index tableID:(NSString *)tableId
 {
     NSUserDefaults *userDef = [NSUserDefaults standardUserDefaults];
-    NSString* fId   = [userDef objectForKey:@"FACEBOOK_ID"];
-    NSString* tId   = [userDef objectForKey:@"BINGO_GAME_ID"];
     
-    NSString *url = [[NSString alloc] initWithFormat:@"http://www1066uj.sakura.ne.jp/bingo/api/entry/updatePushedNumberIndex.php?userid=%@&tableid=%@&index=%@",fId,tId,index];
+    NSString *url = [[NSString alloc] initWithFormat:@"http://www1066uj.sakura.ne.jp/bingo/api/entry/updatePushedNumberIndex.php?tableid=%@&index=%@", tableId, index];
     NSLog(@"ひいた　%@",url);
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
     NSData *json_data = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];

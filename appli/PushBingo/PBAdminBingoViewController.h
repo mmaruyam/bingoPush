@@ -14,4 +14,7 @@
     NSInteger indexNum;
     PBIndicatorView* pbIndicator;
 }
+
+- (id)initWithBingoID:(NSString *)bingoId;
+
 @end

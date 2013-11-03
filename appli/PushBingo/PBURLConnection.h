@@ -17,7 +17,8 @@
 //+(NSDictionary *)getPlayBingoNumber;
 
 //pushします
-+(NSDictionary *)pushNumber:(NSString *)strNum;
+//+(NSDictionary *)pushNumber:(NSString *)strNum;
++(NSDictionary *)pushNumber:(NSString *)strNum tableID:(NSString *)tableId;
 
 //ユーザ登録
 +(void)registUserData;
@@ -29,7 +30,8 @@
 +(BOOL)joinPingo:(NSString *)pingoID;
 
 //ひいた番号を登録します
-+(BOOL)registPushNumberIndex:(NSString *)index;
+//+(BOOL)registPushNumberIndex:(NSString *)index;
++(BOOL)registPushNumberIndex:(NSString *)index tableID:(NSString *)tableId;
 
 //ユーザステータスを更新します
 +(BOOL)updateUserStatus:(NSString *)strStatus bingoID:(NSString *)bingoId;

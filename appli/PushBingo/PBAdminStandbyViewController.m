@@ -79,7 +79,7 @@
     [pbUrlCon execute];
     
     // start bingo game
-    PBAdminBingoViewController *adminBingoCnt = [[PBAdminBingoViewController alloc] init];
+    PBAdminBingoViewController *adminBingoCnt = [[PBAdminBingoViewController alloc] initWithBingoID:_strBingoID];
     [self.navigationController pushViewController:adminBingoCnt animated:YES];
 }
 
