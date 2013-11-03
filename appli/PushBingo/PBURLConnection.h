@@ -37,6 +37,9 @@
 //ユーザステータスを取得します
 +(NSDictionary *)getUserStatusFromTableID:(NSString *)tableid;
 
+//ビンゴゲームに参加しているかどうかを返します
++(BOOL)isJoinBingoFromUserid:(NSString *)uid tableId:(NSString *)tid;
+
 //管理しているビンゴデータを返します
 +(NSDictionary *)getBingoDataFromUserId:(NSString *)uid;
 

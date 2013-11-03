@@ -201,6 +201,22 @@
     
 }
 
++(BOOL)isJoinBingoFromUserid:(NSString *)uid tableId:(NSString *)tid
+{
+    NSString* url = [[NSString alloc] initWithFormat:@"http://www1066uj.sakura.ne.jp/bingo/api/entry/getUserStatus.php?tableid=%@&userid=%@",tid,uid];
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
+    NSData *json_data = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
+    
+    NSError *error=nil;
+    
+    id jsonObj = [NSJSONSerialization JSONObjectWithData:json_data options:NSJSONReadingAllowFragments error:&error];
+    
+    if(jsonObj){
+        return YES;
+    }
+    return NO;
+}
+
 +(BOOL)getBingoStatus:(NSString *)tid
 {
     NSString* url = [[NSString alloc] initWithFormat:@"http://www1066uj.sakura.ne.jp/bingo/api/entry/getBingoData.php?tableid=%@",tid];

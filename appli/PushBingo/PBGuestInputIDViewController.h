@@ -13,6 +13,7 @@
     UITextField *tf;
     NSMutableArray* aryJoinGameId;
     NSString* bingoId;
+    NSString* userId;
 }
 
 -(id)initWithUserId:(NSString *)userid;
