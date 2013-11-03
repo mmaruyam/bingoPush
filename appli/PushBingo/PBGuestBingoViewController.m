@@ -297,7 +297,7 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
     if(self.isLoad){
         dicMasuData = [userDef objectForKey:BINGO_CARD_DATA];
     }
-    if(dicMasuData){
+    if(dicMasuData && self.isLoad){
         NSLog(@"ビンゴカードのデータがありました");
     }
     else{
