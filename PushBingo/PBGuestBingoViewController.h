@@ -1,5 +1,5 @@
 //
-//  PBGuestTopViewController.h
+//  PBGuestBingoViewController.h
 //  PushBingo
 //
 //  Created by Takumi Yamamoto on 2013/10/16.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PBGuestTopViewController : UIViewController
+@interface PBGuestBingoViewController : UIViewController
 {
     NSMutableArray* maryBingoMasu;
     NSInteger iBingo;

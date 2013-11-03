@@ -1,19 +1,19 @@
 //
-//  PBGuestTopViewController.m
+//  PBGuestBingoViewController.m
 //  PushBingo
 //
 //  Created by Takumi Yamamoto on 2013/10/16.
 //  Copyright (c) 2013年 Takumi Yamamoto. All rights reserved.
 //
 
-#import "PBGuestTopViewController.h"
+#import "PBGuestBingoViewController.h"
 #import "PBURLConnection.h"
 
-@interface PBGuestTopViewController ()
+@interface PBGuestBingoViewController ()
 
 @end
 
-@implementation PBGuestTopViewController
+@implementation PBGuestBingoViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {

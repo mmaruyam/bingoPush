@@ -19,7 +19,7 @@
 		B3C9E509180EDEB100A469B6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B3C9E507180EDEB100A469B6 /* InfoPlist.strings */; };
 		B3C9E50B180EDEB100A469B6 /* PushBingoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B3C9E50A180EDEB100A469B6 /* PushBingoTests.m */; };
 		B3C9E516180EDEC000A469B6 /* PBTopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3C9E515180EDEC000A469B6 /* PBTopViewController.m */; };
-		B3C9E51A180EE0C100A469B6 /* PBGuestTopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3C9E519180EE0C100A469B6 /* PBGuestTopViewController.m */; };
+		B3C9E51A180EE0C100A469B6 /* PBGuestBingoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3C9E519180EE0C100A469B6 /* PBGuestBingoViewController.m */; };
 		B3C9E51D180EE0DA00A469B6 /* PBAdminViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3C9E51C180EE0DA00A469B6 /* PBAdminViewController.m */; };
 		B3C9E52018182E3500A469B6 /* PBGuestInputIDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3C9E51F18182E3500A469B6 /* PBGuestInputIDViewController.m */; };
 		B3C9E52E181B6CA500A469B6 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3C9E52D181B6CA500A469B6 /* AdSupport.framework */; };
@@ -223,8 +223,8 @@
 		B3C9E50A180EDEB100A469B6 /* PushBingoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PushBingoTests.m; sourceTree = "<group>"; };
 		B3C9E514180EDEC000A469B6 /* PBTopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBTopViewController.h; sourceTree = "<group>"; };
 		B3C9E515180EDEC000A469B6 /* PBTopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBTopViewController.m; sourceTree = "<group>"; };
-		B3C9E518180EE0C100A469B6 /* PBGuestTopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBGuestTopViewController.h; sourceTree = "<group>"; };
-		B3C9E519180EE0C100A469B6 /* PBGuestTopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBGuestTopViewController.m; sourceTree = "<group>"; };
+		B3C9E518180EE0C100A469B6 /* PBGuestBingoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBGuestBingoViewController.h; sourceTree = "<group>"; };
+		B3C9E519180EE0C100A469B6 /* PBGuestBingoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBGuestBingoViewController.m; sourceTree = "<group>"; };
 		B3C9E51B180EE0DA00A469B6 /* PBAdminViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBAdminViewController.h; sourceTree = "<group>"; };
 		B3C9E51C180EE0DA00A469B6 /* PBAdminViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBAdminViewController.m; sourceTree = "<group>"; };
 		B3C9E51E18182E3500A469B6 /* PBGuestInputIDViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBGuestInputIDViewController.h; sourceTree = "<group>"; };
@@ -491,8 +491,8 @@
 				B3C9E4F5180EDEB100A469B6 /* PBAppDelegate.m */,
 				B3C9E514180EDEC000A469B6 /* PBTopViewController.h */,
 				B3C9E515180EDEC000A469B6 /* PBTopViewController.m */,
-				B3C9E518180EE0C100A469B6 /* PBGuestTopViewController.h */,
-				B3C9E519180EE0C100A469B6 /* PBGuestTopViewController.m */,
+				B3C9E518180EE0C100A469B6 /* PBGuestBingoViewController.h */,
+				B3C9E519180EE0C100A469B6 /* PBGuestBingoViewController.m */,
 				B3C9E51E18182E3500A469B6 /* PBGuestInputIDViewController.h */,
 				B3C9E51F18182E3500A469B6 /* PBGuestInputIDViewController.m */,
 				B3C9E8DD181D67BA00A469B6 /* PBAboutThisAppViewController.h */,
@@ -1010,7 +1010,7 @@
 			files = (
 				B3C9E4F6180EDEB100A469B6 /* PBAppDelegate.m in Sources */,
 				B3C9E53E181B8E9C00A469B6 /* PBURLConnection.m in Sources */,
-				B3C9E51A180EE0C100A469B6 /* PBGuestTopViewController.m in Sources */,
+				B3C9E51A180EE0C100A469B6 /* PBGuestBingoViewController.m in Sources */,
 				B3C9E545181B9C3900A469B6 /* PBIndicatorView.m in Sources */,
 				B3C9E539181B854C00A469B6 /* PBAdminBingoViewController.m in Sources */,
 				B3C9E4F2180EDEB100A469B6 /* main.m in Sources */,
