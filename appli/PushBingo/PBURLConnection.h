@@ -32,10 +32,16 @@
 +(BOOL)registPushNumberIndex:(NSString *)index;
 
 //ユーザステータスを更新します
-+(BOOL)updateUserStatus:(NSString *)strStatus;
++(BOOL)updateUserStatus:(NSString *)strStatus bingoID:(NSString *)bingoId;
 
 //ユーザステータスを取得します
 +(NSDictionary *)getUserStatusFromTableID:(NSString *)tableid;
+
+//管理しているビンゴデータを返します
++(NSDictionary *)getBingoDataFromUserId:(NSString *)uid;
+
+//ビンゴに参加できるかどうかを取得します
++(BOOL)getBingoStatus:(NSString *)tid;
 
 /*
 /// サーバからレスポンスが送られてきたときのデリゲート

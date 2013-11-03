@@ -47,6 +47,9 @@
             [self.view addSubview:label];
         }
         bingoId = [aryJoinGameId objectAtIndex:[aryJoinGameId count] - 1];
+        
+        //とりあえずは最新のIDのみを指定できるようにしておく
+        aryJoinGameId = [aryJoinGameId objectAtIndex:[aryJoinGameId count] -1];
     }
     else{
         NSLog(@"参加しているビンゴゲームはありません");
@@ -138,52 +141,83 @@
         [pushAlert show];
     }
     else{
+        bingoId = tf.text;
         BOOL isExsit = NO;
         for(NSString* str in aryJoinGameId){
-            if([str isEqualToString:tf.text]){
+            if([str isEqualToString:bingoId]){
                 isExsit = YES;
             }
         }
     
-        BOOL bJoin = [PBURLConnection joinPingo:tf.text];
-        
-        if(isExsit){
-            UIAlertView *pushAlert = [[UIAlertView alloc] initWithTitle:@"" message:@"そのIDのゲームは参加済みです"
-                                                               delegate:self cancelButtonTitle:@"確認" otherButtonTitles:nil];
-            [pushAlert show];
-        }
-        else if(bJoin){
-            //参加しているビンゴID一覧に入力したIDを保存
-            NSUserDefaults *userDef = [NSUserDefaults standardUserDefaults];
-            NSMutableArray* maryTmp = [NSMutableArray array];
-            if(aryJoinGameId){
-                maryTmp = [aryJoinGameId mutableCopy];
-            }
-            
-            [maryTmp addObject:tf.text];
-            [userDef setObject:maryTmp forKey:JOIN_BINGO_GAME_ID];
-            NSLog(@"保存しました %@",maryTmp);
-            
-            PBGuestBingoViewController* pbGtopCon = [[PBGuestBingoViewController alloc] initWithBingoId:tf.text];
-            [pbGtopCon setTitle:@"ビンゴページ"];
-            [self.navigationController pushViewController:pbGtopCon animated:YES];
+        BOOL isJoinOK = [self checkBingoGameStatus];
+        if(isJoinOK){
+            [self errorJoined];
         }
         else{
-            UIAlertView *pushAlert = [[UIAlertView alloc] initWithTitle:@"" message:@"そのIDのビンゴゲームはありません。"
-                                                               delegate:self cancelButtonTitle:@"確認" otherButtonTitles:nil];
-            [pushAlert show];
+            if(isExsit){
+                UIAlertView *pushAlert = [[UIAlertView alloc] initWithTitle:@"" message:@"参加済みです"
+                                                                   delegate:self cancelButtonTitle:@"確認" otherButtonTitles:nil];
+                [pushAlert show];
+            }
+            
+            
+            else{
+                BOOL bJoin = [PBURLConnection joinPingo:tf.text];
+                if(bJoin){
+                    //参加しているビンゴID一覧に入力したIDを保存
+                    NSUserDefaults *userDef = [NSUserDefaults standardUserDefaults];
+                    NSMutableArray* maryTmp = [NSMutableArray array];
+                    if(aryJoinGameId){
+                        maryTmp = [aryJoinGameId mutableCopy];
+                    }
+                    
+                    [maryTmp addObject:tf.text];
+                    [userDef setObject:maryTmp forKey:JOIN_BINGO_GAME_ID];
+                    NSLog(@"保存しました %@",maryTmp);
+                    
+                    PBGuestBingoViewController* pbGtopCon = [[PBGuestBingoViewController alloc] initWithBingoId:bingoId];
+                    [pbGtopCon setTitle:@"ビンゴページ"];
+                    [self.navigationController pushViewController:pbGtopCon animated:YES];
+                }
+                else{
+                    UIAlertView *pushAlert = [[UIAlertView alloc] initWithTitle:@"" message:@"そのIDのビンゴゲームはありません。"
+                                                                       delegate:self cancelButtonTitle:@"確認" otherButtonTitles:nil];
+                    [pushAlert show];
+                }
+            }
         }
     }
     
 }
 
+- (BOOL)checkBingoGameStatus
+{
+    return [PBURLConnection getBingoStatus:bingoId];
+    
+}
+
+- (void) errorJoined
+{
+    UIAlertView *pushAlert = [[UIAlertView alloc] initWithTitle:@"" message:@"ビンゴが始まっているため、参加できません"
+                                                       delegate:self cancelButtonTitle:@"確認" otherButtonTitles:nil];
+    [pushAlert show];
+   
+}
+
+
 -(void)tapLoadButton:(id)sender
 {
     NSLog(@"bingoID は　%@",bingoId);
     
-    PBGuestBingoViewController* pbGtopCon = [[PBGuestBingoViewController alloc] initWithBingoId:bingoId];
-    [pbGtopCon setTitle:@"ビンゴページ"];
-    [self.navigationController pushViewController:pbGtopCon animated:YES];
+    if(![self checkBingoGameStatus])
+    {
+        [self errorJoined];
+    }
+    else{
+        PBGuestBingoViewController* pbGtopCon = [[PBGuestBingoViewController alloc] initWithBingoId:bingoId];
+        [pbGtopCon setTitle:@"ビンゴページ"];
+        [self.navigationController pushViewController:pbGtopCon animated:YES];
+    }
 }
 
 - (void)didReceiveMemoryWarning

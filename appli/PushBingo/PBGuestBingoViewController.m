@@ -20,9 +20,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        maryBingoMasu = [NSMutableArray array];
-        iBingo = 0;
-        iReach = 0;
+        
     }
     return self;
 }
@@ -31,6 +29,9 @@
 {
     self = [super init];
     if(self){
+        maryBingoMasu = [NSMutableArray array];
+        iBingo = 0;
+        iReach = 0;
         strBingoId = bingoId;
     }
     
@@ -90,7 +91,7 @@
     
     [self.view addSubview:bingoFrame];
     
-    NSTimer *timerBingoChecker =
+    timerBingoChecker =
     [NSTimer scheduledTimerWithTimeInterval:3.0f target:self selector:@selector(checkPullNumber:) userInfo:nil repeats:YES
      ];
     
@@ -168,8 +169,10 @@
 
 - (void)checkBingoStatus
 {
-    iBingo = 0;
+    int iPrevReach = iReach;
     iReach = 0;
+    iBingo = 0;
+
     [self checkVerticalLine];
     [self checkHorizonalLine];
     [self checkDiagonalLine];
@@ -177,14 +180,37 @@
     NSLog(@"bingo = %d, reach = %d",iBingo,iReach);
     
     if(0< iBingo){
-        [PBURLConnection updateUserStatus:@"bingo"];
+        [PBURLConnection updateUserStatus:@"bingo" bingoID:strBingoId];
+        UIAlertView *pushAlert = [[UIAlertView alloc] initWithTitle:@"info" message:@"ビンゴ！"
+                                                           delegate:self cancelButtonTitle:@"確認" otherButtonTitles:nil];
+        pushAlert.tag = 1;
+        [pushAlert show];
     }
-    else if(0<iReach){
-        [PBURLConnection updateUserStatus:@"reach"];
+    else if(0<iReach && iReach != iPrevReach){
+        [PBURLConnection updateUserStatus:@"reach" bingoID:strBingoId];
+        UIAlertView *pushAlert = [[UIAlertView alloc] initWithTitle:@"info" message:@"リーチ"
+                                                           delegate:self cancelButtonTitle:@"確認" otherButtonTitles:nil];
+        pushAlert.tag = 2;
+        [pushAlert show];
     }
     
     NSString* str = [[NSString alloc] initWithFormat:@"ビンゴ　%d : リーチ %d" , iBingo , iReach];
     label.text = str;
+}
+
+-(void)alertView:(UIAlertView*)alertView
+clickedButtonAtIndex:(NSInteger)buttonIndex {
+    
+    switch (alertView.tag) {
+        case 1:
+            //１番目のボタンが押されたときの処理を記述する
+            [self.navigationController popToRootViewControllerAnimated:YES];
+            break;
+        case 2:
+            //２番目のボタンが押されたときの処理を記述する
+            break;
+    }
+    
 }
 
 -(void)checkVerticalLine
