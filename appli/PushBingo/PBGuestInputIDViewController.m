@@ -34,7 +34,8 @@
     [self test];
     
     NSUserDefaults *userDef = [NSUserDefaults standardUserDefaults];
-    aryJoinGameId = [userDef objectForKey:JOIN_BINGO_GAME_ID];
+    aryJoinGameId = [[userDef objectForKey:JOIN_BINGO_GAME_ID] mutableCopy];
+    
     
     BOOL isJoinedGame = NO;
 
@@ -49,7 +50,7 @@
         bingoId = [aryJoinGameId objectAtIndex:[aryJoinGameId count] - 1];
         
         //とりあえずは最新のIDのみを指定できるようにしておく
-        aryJoinGameId = [aryJoinGameId objectAtIndex:[aryJoinGameId count] -1];
+        [aryJoinGameId addObject:[aryJoinGameId objectAtIndex:[aryJoinGameId count] -1]];
     }
     else{
         NSLog(@"参加しているビンゴゲームはありません");
@@ -143,14 +144,14 @@
     else{
         bingoId = tf.text;
         BOOL isExsit = NO;
+        
         for(NSString* str in aryJoinGameId){
             if([str isEqualToString:bingoId]){
                 isExsit = YES;
             }
         }
     
-        BOOL isJoinOK = [self checkBingoGameStatus];
-        if(isJoinOK){
+        if(![self checkBingoGameStatus]){
             [self errorJoined];
         }
         else{
