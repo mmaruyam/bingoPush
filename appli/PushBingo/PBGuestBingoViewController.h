@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PBIndicatorView.h"
 
 @interface PBGuestBingoViewController : UIViewController
 {
@@ -19,6 +20,7 @@
     NSString* strBingoId;
     NSArray* aryPullNumber;
     BOOL isReachAlert;
+    PBIndicatorView* pbIndicator;
 }
 
 @property (nonatomic) BOOL isLoad;
