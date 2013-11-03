@@ -140,6 +140,7 @@
 {
     NSUserDefaults *userDef = [NSUserDefaults standardUserDefaults];
     NSArray* ary = [userDef objectForKey:@"ADMIN_PLAY_NUMBER"];
+//    NSLog(@"ary: %@", ary);
     
     NSLog(@"aiuro = %@",[ary objectAtIndex:indexNum]);
     
@@ -160,7 +161,7 @@
     
     PBURLConnection* pbUrlCon = [[PBURLConnection alloc] init];
     pbUrlCon.delegate = self;
-    NSString *url = @"http://www1066uj.sakura.ne.jp/bingo/api/entry/getPingoNumber.php";
+    NSString *url = [NSString stringWithFormat:@"http://www1066uj.sakura.ne.jp/bingo/api/entry/getPingoNumberFromDB.php?tableid=%@", _strBingoID];
     [pbUrlCon addUrl:url];
     [pbUrlCon execute];
 
@@ -177,6 +178,7 @@
     id json = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&error];
     NSUserDefaults *userDef = [NSUserDefaults standardUserDefaults];
     [userDef setObject:json forKey:@"ADMIN_PLAY_NUMBER"];
+//    NSLog(@"json: %@", json);
     
     _pullBtn.enabled = YES;
 }
