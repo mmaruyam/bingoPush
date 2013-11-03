@@ -259,7 +259,7 @@
 
     // debug
     //-- facebook login が使えない状態なので、いったん固定設定
-    facebookId = @"1";
+//    facebookId = @"1";
     
     [userDef setObject:facebookId forKey:@"FACEBOOK_ID"];
     [userDef setObject:facebookName forKey:@"FACEBOOK_NAME"];
