@@ -15,5 +15,11 @@
     NSInteger iReach;
     UILabel* label;
     NSDictionary* dicMasuData;
+    NSTimer *timerBingoChecker;
+    NSString* strBingoId;
+    NSArray* aryPullNumber;
 }
+
+- (id)initWithBingoId:(NSString *)bingoId;
+
 @end

@@ -209,6 +209,9 @@
     // get the app delegate, so that we can reference the session property
      PBAppDelegate *appDelegate = [[UIApplication sharedApplication]delegate];
     NSLog(@"updateView");
+    
+    NSLog(@"hogehoge = %d",appDelegate.session.isOpen);
+    
     if (appDelegate.session.isOpen) {
         // valid account UI is shown whenever the session is open
         

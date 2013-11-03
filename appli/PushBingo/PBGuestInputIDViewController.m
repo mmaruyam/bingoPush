@@ -21,6 +21,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        bingoId = [[NSString alloc] init];
     }
     return self;
 }
@@ -29,6 +30,27 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    
+    [self test];
+    
+    NSUserDefaults *userDef = [NSUserDefaults standardUserDefaults];
+    aryJoinGameId = [userDef objectForKey:JOIN_BINGO_GAME_ID];
+    
+    BOOL isJoinedGame = NO;
+
+    if(aryJoinGameId){
+        NSLog(@"参加しているビンゴゲームIDは、%@",aryJoinGameId);
+        isJoinedGame = YES;
+        for(NSInteger i = 0; i < [aryJoinGameId count];i++){
+            UILabel* label = [[UILabel alloc] initWithFrame:CGRectMake(20+(i*40),80,40,40)];
+            label.text = [aryJoinGameId objectAtIndex:i];
+            [self.view addSubview:label];
+        }
+        bingoId = [aryJoinGameId objectAtIndex:[aryJoinGameId count] - 1];
+    }
+    else{
+        NSLog(@"参加しているビンゴゲームはありません");
+    }
     
     tf = [[UITextField alloc] initWithFrame:CGRectMake((self.view.frame.size.width - 250)/2, 160, 250, 30)];
     tf.borderStyle = UITextBorderStyleRoundedRect;
@@ -54,6 +76,33 @@
     joinBtn.clipsToBounds = true;
     [joinBtn addTarget:self action:@selector(tapDoneButton:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:joinBtn];
+    
+    if(isJoinedGame){
+        UIButton *loadBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        loadBtn.frame = CGRectMake((self.view.frame.size.width - 100)/2, 280, 100, 40);
+        [loadBtn setTitle:@"ロード" forState:UIControlStateNormal];
+        [loadBtn addTarget:self action:@selector(changeGray:) forControlEvents:UIControlEventTouchDown];
+        [loadBtn addTarget:self action:@selector(changeNormal:) forControlEvents:UIControlEventTouchUpInside | UIControlEventTouchUpOutside];
+        loadBtn.tag = 2;
+        loadBtn.titleLabel.font = [UIFont boldSystemFontOfSize:18.0f];
+        [loadBtn setTintColor:[UIColor whiteColor]];
+        [loadBtn setBackgroundColor:[UIColor colorWithRed:1.0 green:0.078 blue:0.576 alpha:1.0]];
+        loadBtn.layer.cornerRadius = 6;
+        loadBtn.clipsToBounds = true;
+        [loadBtn addTarget:self action:@selector(tapLoadButton:) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:loadBtn];
+    }
+
+    
+}
+
+-(void)test
+{
+    NSUserDefaults *userDef = [NSUserDefaults standardUserDefaults];
+    NSString* fId   = [userDef objectForKey:@"FACEBOOK_ID"];
+    NSString* fname = [userDef objectForKey:@"FACEBOOK_NAME"];
+    
+    NSLog(@"fId = %@ , fname = %@",fId,fname);
     
 }
 
@@ -89,10 +138,33 @@
         [pushAlert show];
     }
     else{
+        BOOL isExsit = NO;
+        for(NSString* str in aryJoinGameId){
+            if([str isEqualToString:tf.text]){
+                isExsit = YES;
+            }
+        }
+    
         BOOL bJoin = [PBURLConnection joinPingo:tf.text];
         
-        if(bJoin){
-            PBGuestBingoViewController* pbGtopCon = [[PBGuestBingoViewController alloc] init];
+        if(isExsit){
+            UIAlertView *pushAlert = [[UIAlertView alloc] initWithTitle:@"" message:@"そのIDのゲームは参加済みです"
+                                                               delegate:self cancelButtonTitle:@"確認" otherButtonTitles:nil];
+            [pushAlert show];
+        }
+        else if(bJoin){
+            //参加しているビンゴID一覧に入力したIDを保存
+            NSUserDefaults *userDef = [NSUserDefaults standardUserDefaults];
+            NSMutableArray* maryTmp = [NSMutableArray array];
+            if(aryJoinGameId){
+                maryTmp = [aryJoinGameId mutableCopy];
+            }
+            
+            [maryTmp addObject:tf.text];
+            [userDef setObject:maryTmp forKey:JOIN_BINGO_GAME_ID];
+            NSLog(@"保存しました %@",maryTmp);
+            
+            PBGuestBingoViewController* pbGtopCon = [[PBGuestBingoViewController alloc] initWithBingoId:tf.text];
             [pbGtopCon setTitle:@"ビンゴページ"];
             [self.navigationController pushViewController:pbGtopCon animated:YES];
         }
@@ -103,6 +175,15 @@
         }
     }
     
+}
+
+-(void)tapLoadButton:(id)sender
+{
+    NSLog(@"bingoID は　%@",bingoId);
+    
+    PBGuestBingoViewController* pbGtopCon = [[PBGuestBingoViewController alloc] initWithBingoId:bingoId];
+    [pbGtopCon setTitle:@"ビンゴページ"];
+    [self.navigationController pushViewController:pbGtopCon animated:YES];
 }
 
 - (void)didReceiveMemoryWarning

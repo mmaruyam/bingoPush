@@ -11,5 +11,7 @@
 @interface PBGuestInputIDViewController : UIViewController<UITextFieldDelegate>
 {
     UITextField *tf;
+    NSArray* aryJoinGameId;
+    NSString* bingoId;
 }
 @end

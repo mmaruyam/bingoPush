@@ -6,6 +6,15 @@
 
 #import <Availability.h>
 
+//ユーザが参加しているビンゴゲームID一覧
+#define JOIN_BINGO_GAME_ID @"JOIN_BINGO_GAME_ID"
+
+//ビンゴカードデータ
+#define BINGO_CARD_DATA @"BINGO_CARD_DATA"
+
+//ひいた番号データ
+#define PULL_NUMBER @"PULL_NUMBER"
+
 #ifndef __IPHONE_3_0
 #warning "This project uses features only available in iOS SDK 3.0 and later."
 #endif
