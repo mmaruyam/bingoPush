@@ -13,6 +13,7 @@
 @interface PBAdminBingoViewController ()
 {
     NSString *_strBingoID;
+    UIButton *_pullBtn;
 }
 @end
 
@@ -34,6 +35,7 @@
         // Custom initialization
         _strBingoID = [[NSString alloc] init];
         _strBingoID = bingoId;
+        
     }
     
     return self;
@@ -49,20 +51,20 @@
     pbIndicator = [[PBIndicatorView alloc] init];
     [self.view addSubview:pbIndicator];
     
-    
-    UIButton *pullBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    pullBtn.frame = CGRectMake((self.view.frame.size.width - 150)/2, 150, 150, 44);
-    [pullBtn setTitle:@"番号を引く" forState:UIControlStateNormal];
-    pullBtn.titleLabel.font = [UIFont boldSystemFontOfSize:18.0f];
-    [pullBtn setTintColor:[UIColor whiteColor]];
-    [pullBtn setBackgroundColor:[UIColor colorWithRed:1.0 green:0.078 blue:0.576 alpha:1.0]];
-    pullBtn.layer.cornerRadius = 6;
-    pullBtn.clipsToBounds = true;
-    pullBtn.tag = 1;
-    [pullBtn addTarget:self action:@selector(tapButton:) forControlEvents:UIControlEventTouchUpInside];
-    [pullBtn addTarget:self action:@selector(changeGray:) forControlEvents:UIControlEventTouchDown];
-    [pullBtn addTarget:self action:@selector(changeNormal:) forControlEvents:UIControlEventTouchUpInside | UIControlEventTouchUpOutside];
-    [self.view addSubview:pullBtn];
+    _pullBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    _pullBtn.enabled = NO;
+    _pullBtn.frame = CGRectMake((self.view.frame.size.width - 150)/2, 150, 150, 44);
+    [_pullBtn setTitle:@"番号を引く" forState:UIControlStateNormal];
+    _pullBtn.titleLabel.font = [UIFont boldSystemFontOfSize:18.0f];
+    [_pullBtn setTintColor:[UIColor whiteColor]];
+    [_pullBtn setBackgroundColor:[UIColor colorWithRed:1.0 green:0.078 blue:0.576 alpha:1.0]];
+    _pullBtn.layer.cornerRadius = 6;
+    _pullBtn.clipsToBounds = true;
+    _pullBtn.tag = 1;
+    [_pullBtn addTarget:self action:@selector(tapButton:) forControlEvents:UIControlEventTouchUpInside];
+    [_pullBtn addTarget:self action:@selector(changeGray:) forControlEvents:UIControlEventTouchDown];
+    [_pullBtn addTarget:self action:@selector(changeNormal:) forControlEvents:UIControlEventTouchUpInside | UIControlEventTouchUpOutside];
+    [self.view addSubview:_pullBtn];
     
     NSUserDefaults *userDef = [NSUserDefaults standardUserDefaults];
     UILabel* statusLabel = [[UILabel alloc] initWithFrame:CGRectMake(10,250,300,50)];
@@ -176,8 +178,7 @@
     NSUserDefaults *userDef = [NSUserDefaults standardUserDefaults];
     [userDef setObject:json forKey:@"ADMIN_PLAY_NUMBER"];
     
-    
-    
+    _pullBtn.enabled = YES;
 }
 
 - (void)didReceiveMemoryWarning
