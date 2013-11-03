@@ -123,6 +123,14 @@
 
 -(void)finishBingo
 {
+    // update status from start to finish
+    NSString *status = @"finish";
+    NSString *url = [[NSString alloc]initWithFormat:@"http://www1066uj.sakura.ne.jp/bingo/api/entry/updateTableStatus.php?tableid=%@&status=%@", _strBingoID, status];
+    NSLog(@"[finish]updateTableStatus url: %@",url);
+    PBURLConnection* pbUrlCon = [[PBURLConnection alloc] init];
+    [pbUrlCon addUrl:url];
+    [pbUrlCon execute];
+    
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
