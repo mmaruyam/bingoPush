@@ -10,4 +10,6 @@
 
 @interface PBAdminStandbyViewController : UIViewController
 
+- (id)initWithBingoID:(NSString *) bingoID;
+
 @end

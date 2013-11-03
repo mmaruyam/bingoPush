@@ -11,6 +11,7 @@
 #import "PBAdminBingoViewController.h"
 #import "PBIndicatorView.h"
 #import "PBURLConnection.h"
+#import "PBAdminStandbyViewController.h"
 
 
 @interface PBAdminViewController ()
@@ -128,6 +129,10 @@
     NSUserDefaults *userDef = [NSUserDefaults standardUserDefaults];
     NSString* fId   = [userDef objectForKey:@"FACEBOOK_ID"];
     
+    // debug
+    //-- facebook login が使えない状態なので、いったん固定設定
+    fId = @"1";
+    
     NSString *url = [[NSString alloc]initWithFormat:@"http://www1066uj.sakura.ne.jp/bingo/api/entry/createBingoTable.php?userid=%@",fId];
     NSLog(@"url = %@",url);
     [pbUrlCon addUrl:url];
@@ -155,6 +160,9 @@
     
     makeIdBtn.enabled = NO;
     [makeIdBtn setBackgroundColor:[UIColor lightGrayColor]];
+    
+    PBAdminStandbyViewController *adminStandbyCnt = [[PBAdminStandbyViewController alloc] initWithBingoID:json];
+    [self.navigationController pushViewController:adminStandbyCnt animated:YES];
 }
 
 

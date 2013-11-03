@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		139BEA1E18262B2400C2260F /* PBAdminStandbyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 139BEA1D18262B2400C2260F /* PBAdminStandbyViewController.m */; };
 		13E584EB182618BC0020DADF /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13E584EA182618BC0020DADF /* FacebookSDK.framework */; };
 		13E584ED182618C60020DADF /* FBUserSettingsViewResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 13E584EC182618C60020DADF /* FBUserSettingsViewResources.bundle */; };
-		13E584F018261B170020DADF /* PBAdminStandbyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13E584EF18261B170020DADF /* PBAdminStandbyViewController.m */; };
 		B3C9E4E6180EDEB100A469B6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3C9E4E5180EDEB100A469B6 /* Foundation.framework */; };
 		B3C9E4E8180EDEB100A469B6 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3C9E4E7180EDEB100A469B6 /* CoreGraphics.framework */; };
 		B3C9E4EA180EDEB100A469B6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3C9E4E9180EDEB100A469B6 /* UIKit.framework */; };
@@ -207,10 +207,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		139BEA1C18262B2400C2260F /* PBAdminStandbyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBAdminStandbyViewController.h; sourceTree = "<group>"; };
+		139BEA1D18262B2400C2260F /* PBAdminStandbyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBAdminStandbyViewController.m; sourceTree = "<group>"; };
 		13E584EA182618BC0020DADF /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../../../../../Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
 		13E584EC182618C60020DADF /* FBUserSettingsViewResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = FBUserSettingsViewResources.bundle; path = ../../../../../../Documents/FacebookSDK/FacebookSDK.framework/Versions/A/Resources/FBUserSettingsViewResources.bundle; sourceTree = "<group>"; };
-		13E584EE18261B170020DADF /* PBAdminStandbyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBAdminStandbyViewController.h; sourceTree = "<group>"; };
-		13E584EF18261B170020DADF /* PBAdminStandbyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBAdminStandbyViewController.m; sourceTree = "<group>"; };
 		B3C9E4E2180EDEB100A469B6 /* PushBingo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PushBingo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3C9E4E5180EDEB100A469B6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		B3C9E4E7180EDEB100A469B6 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -556,10 +556,10 @@
 			children = (
 				B3C9E51B180EE0DA00A469B6 /* PBAdminViewController.h */,
 				B3C9E51C180EE0DA00A469B6 /* PBAdminViewController.m */,
-				13E584EE18261B170020DADF /* PBAdminStandbyViewController.h */,
-				13E584EF18261B170020DADF /* PBAdminStandbyViewController.m */,
 				B3C9E537181B854C00A469B6 /* PBAdminBingoViewController.h */,
 				B3C9E538181B854C00A469B6 /* PBAdminBingoViewController.m */,
+				139BEA1C18262B2400C2260F /* PBAdminStandbyViewController.h */,
+				139BEA1D18262B2400C2260F /* PBAdminStandbyViewController.m */,
 			);
 			name = Admin;
 			sourceTree = "<group>";
@@ -1022,7 +1022,7 @@
 				B3C9E8DF181D67BA00A469B6 /* PBAboutThisAppViewController.m in Sources */,
 				B3C9E52018182E3500A469B6 /* PBGuestInputIDViewController.m in Sources */,
 				B3C9E51D180EE0DA00A469B6 /* PBAdminViewController.m in Sources */,
-				13E584F018261B170020DADF /* PBAdminStandbyViewController.m in Sources */,
+				139BEA1E18262B2400C2260F /* PBAdminStandbyViewController.m in Sources */,
 				B3C9E516180EDEC000A469B6 /* PBTopViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1146,8 +1146,6 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Takumi Yamamoto (5QAVBTC99H)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/takuyama/Desktop,
-					"/Users/takuyama/Desktop/Xcode\\ Project/PushBingo/PushBingo",
 					/Documents/FacebookSDK,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1165,8 +1163,6 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer: Takumi Yamamoto (5QAVBTC99H)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/takuyama/Desktop,
-					"/Users/takuyama/Desktop/Xcode\\ Project/PushBingo/PushBingo",
 					/Documents/FacebookSDK,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
