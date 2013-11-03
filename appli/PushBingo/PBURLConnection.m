@@ -150,12 +150,11 @@
     
 }
 
-+(BOOL)updateUserStatus:(NSString *)strStatus
++(BOOL)updateUserStatus:(NSString *)strStatus bingoID:(NSString *)bingoId
 {
     NSUserDefaults *userDef = [NSUserDefaults standardUserDefaults];
     NSString* fId   = [userDef objectForKey:@"FACEBOOK_ID"];
-    NSString* tId   = [userDef objectForKey:@"BINGO_GAME_ID"];
-    NSString *url = [[NSString alloc] initWithFormat:@"http://www1066uj.sakura.ne.jp/bingo/api/entry/updateUserStatus.php?tableid=%@&userid=%@&status=%@",tId,fId,strStatus];
+    NSString *url = [[NSString alloc] initWithFormat:@"http://www1066uj.sakura.ne.jp/bingo/api/entry/updateUserStatus.php?tableid=%@&userid=%@&status=%@",bingoId,fId,strStatus];
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
     NSData *json_data = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
     
@@ -188,6 +187,39 @@
     return  YES;
 }
 
++(NSDictionary *)getBingoDataFromUserId:(NSString *)uid
+{
+    NSString* url = [[NSString alloc] initWithFormat:@"http://www1066uj.sakura.ne.jp/bingo/api/entry/getBingoData.php?userid=%@",uid];
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
+    NSData *json_data = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
+    
+    NSError *error=nil;
+    
+    id jsonObj = [NSJSONSerialization JSONObjectWithData:json_data options:NSJSONReadingAllowFragments error:&error];
+    
+    return jsonObj;
+    
+}
+
++(BOOL)getBingoStatus:(NSString *)tid
+{
+    NSString* url = [[NSString alloc] initWithFormat:@"http://www1066uj.sakura.ne.jp/bingo/api/entry/getBingoData.php?tableid=%@",tid];
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
+    NSData *json_data = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
+    
+    NSError *error=nil;
+    
+    id jsonObj = [NSJSONSerialization JSONObjectWithData:json_data options:NSJSONReadingAllowFragments error:&error];
+    
+    NSDictionary* dicStatus = [jsonObj objectAtIndex:0];
+    NSString* status = [dicStatus objectForKey:@"status"];
+    
+    if([status isEqualToString:@"wait"]){
+        return YES;
+    }
+
+    return NO;
+}
 
 
 /*************************************/
