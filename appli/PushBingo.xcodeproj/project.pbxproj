@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		139BEA1E18262B2400C2260F /* PBAdminStandbyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 139BEA1D18262B2400C2260F /* PBAdminStandbyViewController.m */; };
+		139BEA241826388300C2260F /* PBAdminBingoListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 139BEA231826388300C2260F /* PBAdminBingoListViewController.m */; };
 		13E584EB182618BC0020DADF /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13E584EA182618BC0020DADF /* FacebookSDK.framework */; };
 		13E584ED182618C60020DADF /* FBUserSettingsViewResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 13E584EC182618C60020DADF /* FBUserSettingsViewResources.bundle */; };
 		B3C9E4E6180EDEB100A469B6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3C9E4E5180EDEB100A469B6 /* Foundation.framework */; };
@@ -209,6 +210,8 @@
 /* Begin PBXFileReference section */
 		139BEA1C18262B2400C2260F /* PBAdminStandbyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBAdminStandbyViewController.h; sourceTree = "<group>"; };
 		139BEA1D18262B2400C2260F /* PBAdminStandbyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBAdminStandbyViewController.m; sourceTree = "<group>"; };
+		139BEA221826388300C2260F /* PBAdminBingoListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBAdminBingoListViewController.h; sourceTree = "<group>"; };
+		139BEA231826388300C2260F /* PBAdminBingoListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBAdminBingoListViewController.m; sourceTree = "<group>"; };
 		13E584EA182618BC0020DADF /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../../../../../Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
 		13E584EC182618C60020DADF /* FBUserSettingsViewResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = FBUserSettingsViewResources.bundle; path = ../../../../../../Documents/FacebookSDK/FacebookSDK.framework/Versions/A/Resources/FBUserSettingsViewResources.bundle; sourceTree = "<group>"; };
 		B3C9E4E2180EDEB100A469B6 /* PushBingo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PushBingo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -560,6 +563,8 @@
 				B3C9E538181B854C00A469B6 /* PBAdminBingoViewController.m */,
 				139BEA1C18262B2400C2260F /* PBAdminStandbyViewController.h */,
 				139BEA1D18262B2400C2260F /* PBAdminStandbyViewController.m */,
+				139BEA221826388300C2260F /* PBAdminBingoListViewController.h */,
+				139BEA231826388300C2260F /* PBAdminBingoListViewController.m */,
 			);
 			name = Admin;
 			sourceTree = "<group>";
@@ -1021,6 +1026,7 @@
 				B3C9E4F2180EDEB100A469B6 /* main.m in Sources */,
 				B3C9E8DF181D67BA00A469B6 /* PBAboutThisAppViewController.m in Sources */,
 				B3C9E52018182E3500A469B6 /* PBGuestInputIDViewController.m in Sources */,
+				139BEA241826388300C2260F /* PBAdminBingoListViewController.m in Sources */,
 				B3C9E51D180EE0DA00A469B6 /* PBAdminViewController.m in Sources */,
 				139BEA1E18262B2400C2260F /* PBAdminStandbyViewController.m in Sources */,
 				B3C9E516180EDEC000A469B6 /* PBTopViewController.m in Sources */,
