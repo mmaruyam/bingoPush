@@ -7,7 +7,7 @@
 //
 
 #import "PBGuestInputIDViewController.h"
-#import "PBGuestTopViewController.h"
+#import "PBGuestBingoViewController.h"
 #import "PBURLConnection.h"
 
 @interface PBGuestInputIDViewController ()
@@ -92,7 +92,7 @@
         BOOL bJoin = [PBURLConnection joinPingo:tf.text];
         
         if(bJoin){
-            PBGuestTopViewController* pbGtopCon = [[PBGuestTopViewController alloc] init];
+            PBGuestBingoViewController* pbGtopCon = [[PBGuestBingoViewController alloc] init];
             [pbGtopCon setTitle:@"ビンゴページ"];
             [self.navigationController pushViewController:pbGtopCon animated:YES];
         }
