@@ -5,10 +5,14 @@
 require_once '../cntr/BingoTableManager.class.php';
 require_once '../util/makeCardNumber.php';
 
-$userid = (empty($_REQUEST['userid'])) ? '' : $_REQUEST['userid'];
+$userid = '';
 $tableid = (empty($_REQUEST['tableid'])) ? '' : $_REQUEST['tableid'];
 
 $obj = new BingoTableManager();
 $data = $obj->getMasterTableData($userid, $tableid);
-print_r(json_encode($data));
+if ($data == false) {
+    echo 'false';
+    return;
+}
+print_r($data[0]['number']);
 ?>
