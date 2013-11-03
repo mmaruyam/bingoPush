@@ -7,6 +7,7 @@
 //
 
 #import "PBGuestBingoViewController.h"
+#import "PBIndicatorView.h"
 #import "PBURLConnection.h"
 
 @interface PBGuestBingoViewController ()
@@ -91,9 +92,9 @@
     
     [self.view addSubview:bingoFrame];
     
-    timerBingoChecker =
-    [NSTimer scheduledTimerWithTimeInterval:3.0f target:self selector:@selector(checkPullNumber:) userInfo:nil repeats:YES
-     ];
+    pbIndicator = [[PBIndicatorView alloc] init];
+    [self.view addSubview:pbIndicator];
+    
     
 }
 
@@ -107,11 +108,19 @@
     NSUserDefaults *userDef = [NSUserDefaults standardUserDefaults];
     [userDef setObject:json forKey:PULL_NUMBER];
     
+    [pbIndicator stopIndicator];
+    
+    timerBingoChecker =
+    [NSTimer scheduledTimerWithTimeInterval:2.0f target:self selector:@selector(checkPullNumber:) userInfo:nil repeats:YES
+     ];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     NSLog(@"kkkkk = %d",self.isLoad);
+    
+    [pbIndicator startIndicator];
     
     PBURLConnection* pbUrlCon = [[PBURLConnection alloc] init];
     pbUrlCon.delegate = self;
