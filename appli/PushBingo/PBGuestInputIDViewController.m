@@ -30,7 +30,7 @@
 {
     self = [super init];
     if(self){
-        
+        userId = userid;
     }
     return self;
 }
@@ -214,20 +214,43 @@
    
 }
 
+-(BOOL)checkJoinBingo
+{
+    return [PBURLConnection isJoinBingoFromUserid:userId tableId:bingoId];
+    
+}
 
 -(void)tapLoadButton:(id)sender
 {
     NSLog(@"bingoID は　%@",bingoId);
     
-    if(![self checkBingoGameStatus])
+    BOOL bingoWaitStatus = [self checkBingoGameStatus];
+    BOOL bingoJoin = [self checkJoinBingo];
+    
+    if(!bingoWaitStatus && !bingoJoin)
     {
         [self errorJoined];
     }
     else{
+        
+        
         PBGuestBingoViewController* pbGtopCon = [[PBGuestBingoViewController alloc] initWithBingoId:bingoId];
         [pbGtopCon setTitle:@"ビンゴページ"];
         [self.navigationController pushViewController:pbGtopCon animated:YES];
     }
+}
+- (void)connection:(NSURLConnection *)i_connection didReceiveData:(NSData *)data
+{
+    //デリゲート側に実装されている場合はダミー
+    
+    NSLog(@"received data");
+    
+    NSError* error;
+    id json = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&error];
+    NSLog(@"data = %@",json);
+
+    NSLog(@"takumi takumi takumi");
+    
 }
 
 - (void)didReceiveMemoryWarning
