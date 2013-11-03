@@ -22,7 +22,6 @@
 		B3C9E51A180EE0C100A469B6 /* PBGuestTopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3C9E519180EE0C100A469B6 /* PBGuestTopViewController.m */; };
 		B3C9E51D180EE0DA00A469B6 /* PBAdminViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3C9E51C180EE0DA00A469B6 /* PBAdminViewController.m */; };
 		B3C9E52018182E3500A469B6 /* PBGuestInputIDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3C9E51F18182E3500A469B6 /* PBGuestInputIDViewController.m */; };
-		B3C9E52C181B6C4400A469B6 /* FBUserSettingsViewResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B3C9E52B181B6C4400A469B6 /* FBUserSettingsViewResources.bundle */; };
 		B3C9E52E181B6CA500A469B6 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3C9E52D181B6CA500A469B6 /* AdSupport.framework */; };
 		B3C9E530181B6CAE00A469B6 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3C9E52F181B6CAE00A469B6 /* Accounts.framework */; };
 		B3C9E532181B6CBA00A469B6 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B3C9E531181B6CBA00A469B6 /* libsqlite3.dylib */; };
@@ -193,6 +192,7 @@
 		B3C9E8D8181D49AB00A469B6 /* 75_off@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B3C9E88D181D49AA00A469B6 /* 75_off@2x.png */; };
 		B3C9E8DC181D65AA00A469B6 /* frame@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B3C9E8DB181D65AA00A469B6 /* frame@2x.png */; };
 		B3C9E8DF181D67BA00A469B6 /* PBAboutThisAppViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B3C9E8DE181D67BA00A469B6 /* PBAboutThisAppViewController.m */; };
+		B3C9E8E118260C4A00A469B6 /* FBUserSettingsViewResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B3C9E8E018260C4A00A469B6 /* FBUserSettingsViewResources.bundle */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -236,7 +236,6 @@
 		B3C9E526181B68F900A469B6 /* pingo.pem */ = {isa = PBXFileReference; lastKnownFileType = text; path = pingo.pem; sourceTree = "<group>"; };
 		B3C9E527181B68F900A469B6 /* syoumeisyo.p12 */ = {isa = PBXFileReference; lastKnownFileType = file; path = syoumeisyo.p12; sourceTree = "<group>"; };
 		B3C9E528181B68F900A469B6 /* syoumeisyo.pem */ = {isa = PBXFileReference; lastKnownFileType = text; path = syoumeisyo.pem; sourceTree = "<group>"; };
-		B3C9E52B181B6C4400A469B6 /* FBUserSettingsViewResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = FBUserSettingsViewResources.bundle; path = ../../../../../Documents/FacebookSDK/FacebookSDK.framework/Versions/A/Resources/FBUserSettingsViewResources.bundle; sourceTree = "<group>"; };
 		B3C9E52D181B6CA500A469B6 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		B3C9E52F181B6CAE00A469B6 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		B3C9E531181B6CBA00A469B6 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
@@ -411,6 +410,7 @@
 		B3C9E8DB181D65AA00A469B6 /* frame@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "frame@2x.png"; path = "image/frame@2x.png"; sourceTree = "<group>"; };
 		B3C9E8DD181D67BA00A469B6 /* PBAboutThisAppViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBAboutThisAppViewController.h; sourceTree = "<group>"; };
 		B3C9E8DE181D67BA00A469B6 /* PBAboutThisAppViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBAboutThisAppViewController.m; sourceTree = "<group>"; };
+		B3C9E8E018260C4A00A469B6 /* FBUserSettingsViewResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = FBUserSettingsViewResources.bundle; path = PushBingo/FacebookSDK.framework/Versions/A/Resources/FBUserSettingsViewResources.bundle; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -465,13 +465,13 @@
 		B3C9E4E4180EDEB100A469B6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B3C9E8E018260C4A00A469B6 /* FBUserSettingsViewResources.bundle */,
 				B3C9E6F2181CFA0100A469B6 /* FacebookSDK.framework */,
 				B3C9E535181B6CCD00A469B6 /* Social.framework */,
 				B3C9E533181B6CC300A469B6 /* Security.framework */,
 				B3C9E531181B6CBA00A469B6 /* libsqlite3.dylib */,
 				B3C9E52F181B6CAE00A469B6 /* Accounts.framework */,
 				B3C9E52D181B6CA500A469B6 /* AdSupport.framework */,
-				B3C9E52B181B6C4400A469B6 /* FBUserSettingsViewResources.bundle */,
 				B3C9E521181B68F900A469B6 /* Documents */,
 				B3C9E4E5180EDEB100A469B6 /* Foundation.framework */,
 				B3C9E4E7180EDEB100A469B6 /* CoreGraphics.framework */,
@@ -875,6 +875,7 @@
 				B3C9E8AC181D49AB00A469B6 /* 31_off@2x.png in Resources */,
 				B3C9E801181D3CAB00A469B6 /* 13@2x.png in Resources */,
 				B3C9E826181D3CAB00A469B6 /* 50@2x.png in Resources */,
+				B3C9E8E118260C4A00A469B6 /* FBUserSettingsViewResources.bundle in Resources */,
 				B3C9E89E181D49AB00A469B6 /* 17_off@2x.png in Resources */,
 				B3C9E80B181D3CAB00A469B6 /* 23@2x.png in Resources */,
 				B3C9E8B3181D49AB00A469B6 /* 38_off@2x.png in Resources */,
@@ -968,7 +969,6 @@
 				B3C9E7F9181D3CAB00A469B6 /* 5@2x.png in Resources */,
 				B3C9E898181D49AB00A469B6 /* 11_off@2x.png in Resources */,
 				B3C9E81E181D3CAB00A469B6 /* 42@2x.png in Resources */,
-				B3C9E52C181B6C4400A469B6 /* FBUserSettingsViewResources.bundle in Resources */,
 				B3C9E7FF181D3CAB00A469B6 /* 11@2x.png in Resources */,
 				B3C9E82B181D3CAB00A469B6 /* 55@2x.png in Resources */,
 				B3C9E8A3181D49AB00A469B6 /* 22_off@2x.png in Resources */,
