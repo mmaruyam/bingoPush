@@ -114,7 +114,7 @@
 
     
     NSUserDefaults *userDef = [NSUserDefaults standardUserDefaults];
-    NSArray* pullNem = [userDef objectForKey:@"PULL_NUMBER"];
+    NSArray* pullNem = [userDef objectForKey:PULL_NUMBER];
     NSMutableArray* maryPullNum = [NSMutableArray array];
     
     if(pullNem != nil){
@@ -130,7 +130,6 @@
     
     
     NSLog(@"mary mary = %@" , maryPullNum);
-    
     
     
     UIAlertView *pushAlert = [[UIAlertView alloc] initWithTitle:@"info" message:[[userInfo objectForKey:@"aps"] objectForKey:@"alert"]
