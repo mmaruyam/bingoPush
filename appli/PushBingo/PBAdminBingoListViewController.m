@@ -33,8 +33,6 @@
         //-- facebook login が使えない状態なので、いったん固定設定
         strUserID = @"1";
         
-        // get table data
-        NSURL *url = 
     }
     return self;
 }
