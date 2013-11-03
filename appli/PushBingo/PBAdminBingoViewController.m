@@ -12,7 +12,7 @@
 
 @interface PBAdminBingoViewController ()
 {
-    
+    NSString *_strBingoID;
 }
 @end
 
@@ -24,6 +24,18 @@
     if (self) {
         // Custom initialization
     }
+    return self;
+}
+
+- (id)initWithBingoID:(NSString *)bingoId
+{
+    self = [super initWithNibName:nil bundle:nil];
+    if (self) {
+        // Custom initialization
+        _strBingoID = [[NSString alloc] init];
+        _strBingoID = bingoId;
+    }
+    
     return self;
 }
 
@@ -123,9 +135,8 @@
     
     
     NSString* strIndex = [[NSString alloc] initWithFormat:@"%d",indexNum];
-    [PBURLConnection pushNumber:[ary objectAtIndex:indexNum]];
-    [PBURLConnection registPushNumberIndex:strIndex];
-    
+    [PBURLConnection pushNumber:[ary objectAtIndex:indexNum] tableID:_strBingoID];
+    [PBURLConnection registPushNumberIndex:strIndex tableID:_strBingoID];
     
     indexNum++;
     
