@@ -12,6 +12,7 @@
 #import "PBIndicatorView.h"
 #import "PBURLConnection.h"
 #import "PBAdminStandbyViewController.h"
+#import "PBAdminBingoListViewController.h"
 
 
 @interface PBAdminViewController ()
@@ -57,7 +58,7 @@
     
     startBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     startBtn.frame = CGRectMake((self.view.frame.size.width - 150)/2, 260, 150, 44);
-    [startBtn setTitle:@"Start BINGO" forState:UIControlStateNormal];
+    [startBtn setTitle:@"Select BINGO" forState:UIControlStateNormal];
     
     startBtn.titleLabel.font = [UIFont boldSystemFontOfSize:18.0f];
     [startBtn setTintColor:[UIColor whiteColor]];
@@ -112,10 +113,16 @@
         [indicator startAnimating];
         [self makeBingoGamgeId];
     }
+    
+    // 主催するビンゴの一覧表示画面
     else if(targetBtn.tag == 2){
         
-        PBAdminBingoViewController* adminBingoCnt = [[PBAdminBingoViewController alloc] init];
-        [self.navigationController pushViewController:adminBingoCnt animated:YES];
+//        PBAdminBingoViewController* adminBingoCnt = [[PBAdminBingoViewController alloc] init];
+//        [self.navigationController pushViewController:adminBingoCnt animated:YES];
+        
+        PBAdminBingoListViewController *adminBingoListCnt = [[PBAdminBingoListViewController alloc] initWithStyle:UITableViewStylePlain];
+        NSLog(@"test");
+        [self.navigationController pushViewController:adminBingoListCnt animated:YES];
         
     }
     

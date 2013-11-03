@@ -11,7 +11,9 @@
 #import "PBIndicatorView.h"
 
 @interface PBAdminBingoViewController ()
-
+{
+    
+}
 @end
 
 @implementation PBAdminBingoViewController

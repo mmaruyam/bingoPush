@@ -12,7 +12,7 @@
 
 @interface PBAdminBingoListViewController ()
 {
-    NSArray *aryBingoListData;
+    NSDictionary *dicBingoListData;
     NSString *strUserID;
 }
 
@@ -25,6 +25,9 @@
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
+        // initialize
+        dicBingoListData = [[NSDictionary alloc] init];
+        
         // userid 取得
         NSUserDefaults *userDef = [NSUserDefaults standardUserDefaults];
         strUserID = [NSString stringWithString:[userDef objectForKey:@"FACEBOOK_ID"]];
@@ -32,7 +35,18 @@
         // debug
         //-- facebook login が使えない状態なので、いったん固定設定
         strUserID = @"1";
+<<<<<<< HEAD
+=======
         
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+        // get table data
+        NSURL *url = @"";
+=======
+>>>>>>> 32f5ce507b2fb3818be89e8aff6adb00b7212779
+>>>>>>> 10f12cbda9f2f3be63f95e9c0df703eb09c244a1
+>>>>>>> c3d60ec486ac8a1f7273b050d557c214f56a0d93
     }
     return self;
 }
@@ -47,9 +61,9 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
-    
     // data
-    
+    dicBingoListData = [PBURLConnection getBingoDataFromUserId:strUserID];
+    NSLog(@"dicBingoListData: %@", dicBingoListData);
 }
 
 - (void)didReceiveMemoryWarning
