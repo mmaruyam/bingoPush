@@ -27,6 +27,18 @@
     return self;
 }
 
+- (id)initWithBingoId:(NSString *)bingoId
+{
+    self = [super init];
+    if(self){
+        strBingoId = bingoId;
+    }
+    
+    NSLog(@"参加しているIDは　%@",strBingoId);
+    
+    return self;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -78,16 +90,41 @@
     
     [self.view addSubview:bingoFrame];
     
-    NSTimer *tm =
+    NSTimer *timerBingoChecker =
     [NSTimer scheduledTimerWithTimeInterval:3.0f target:self selector:@selector(checkPullNumber:) userInfo:nil repeats:YES
      ];
     
 }
 
+- (void)connection:(NSURLConnection *)i_connection didReceiveData:(NSData *)data
+{
+    NSLog(@"ひいた番号のデータを受信しました");
+    NSError* error;
+    id json = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&error];
+    NSLog(@"ひいた番号は , %@",json);
+    
+    NSUserDefaults *userDef = [NSUserDefaults standardUserDefaults];
+    [userDef setObject:json forKey:PULL_NUMBER];
+    
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    PBURLConnection* pbUrlCon = [[PBURLConnection alloc] init];
+    pbUrlCon.delegate = self;
+    NSString* url = [[NSString alloc] initWithFormat:@"http://www1066uj.sakura.ne.jp/bingo/api/entry/getPushedNumbers.php?tableid=%@",strBingoId];
+    [pbUrlCon addUrl:url];
+    [pbUrlCon execute];
+}
+
+//引いた番号をチェックします
 -(void)checkPullNumber:(NSTimer *)timer
 {
+    
     NSUserDefaults *userDef = [NSUserDefaults standardUserDefaults];
-    NSArray* aryPullNumber = [userDef objectForKey:@"PULL_NUMBER"];
+    aryPullNumber = [userDef objectForKey:PULL_NUMBER];
+    
+    NSLog(@"ひいた番号（timer) %@",aryPullNumber);
     
     
     for(NSString* pull in aryPullNumber){
@@ -121,6 +158,12 @@
     id jsonObj = [NSJSONSerialization JSONObjectWithData:json_data options:NSJSONReadingAllowFragments error:&error];
     
     return  jsonObj;
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    NSLog(@"timer をとめます");
+    [timerBingoChecker invalidate];
 }
 
 - (void)checkBingoStatus
@@ -213,7 +256,19 @@
 
 - (id)makeBingoCard
 {
-    dicMasuData = [self getBingoMasuData];
+    NSUserDefaults *userDef = [NSUserDefaults standardUserDefaults];
+    dicMasuData = [userDef objectForKey:BINGO_CARD_DATA];
+    
+    if(dicMasuData){
+        NSLog(@"ビンゴカードのデータがありました");
+    }
+    else{
+        NSLog(@"ビンゴカードのデータがありませんでした");
+        dicMasuData = [self getBingoMasuData];
+        [userDef setObject:dicMasuData forKey:BINGO_CARD_DATA];
+    }
+    
+    
     
     UIImage* imageMasu = [UIImage imageNamed:@"1"];
     
@@ -272,8 +327,10 @@
     [self checkBingoStatus];
      */
     
+    /*
     UIButton* button = [maryBingoMasu objectAtIndex:10];
     button.enabled = NO;
+     */
     
 }
 
