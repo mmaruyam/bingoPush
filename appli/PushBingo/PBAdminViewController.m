@@ -11,6 +11,7 @@
 #import "PBAdminBingoViewController.h"
 #import "PBIndicatorView.h"
 #import "PBURLConnection.h"
+#import "PBAdminStandbyViewController.h"
 
 
 @interface PBAdminViewController ()
@@ -120,6 +121,26 @@
     
 }
 
+- (void)makeBingoGamgeId
+{
+    PBURLConnection* pbUrlCon = [[PBURLConnection alloc] init];
+    pbUrlCon.delegate = self;
+    
+    NSUserDefaults *userDef = [NSUserDefaults standardUserDefaults];
+    NSString* fId   = [userDef objectForKey:@"FACEBOOK_ID"];
+    
+    // debug
+    //-- facebook login が使えない状態なので、いったん固定設定
+    fId = @"1";
+    
+    NSString *url = [[NSString alloc]initWithFormat:@"http://www1066uj.sakura.ne.jp/bingo/api/entry/createBingoTable.php?userid=%@",fId];
+    NSLog(@"url = %@",url);
+    [pbUrlCon addUrl:url];
+    [pbUrlCon execute];
+    
+    [pbIndicator startIndicator];
+}
+
 /// サーバからデータが送られてきたときのデリゲート
 - (void)connection:(NSURLConnection *)i_connection didReceiveData:(NSData *)data
 {
@@ -140,24 +161,11 @@
     makeIdBtn.enabled = NO;
     [makeIdBtn setBackgroundColor:[UIColor lightGrayColor]];
     
+    PBAdminStandbyViewController *adminStandbyCnt = [[PBAdminStandbyViewController alloc] initWithBingoID:json];
+    [self.navigationController pushViewController:adminStandbyCnt animated:YES];
 }
 
-- (void)makeBingoGamgeId
-{
-    PBURLConnection* pbUrlCon = [[PBURLConnection alloc] init];
-    pbUrlCon.delegate = self;
-    
-    NSUserDefaults *userDef = [NSUserDefaults standardUserDefaults];
-    NSString* fId   = [userDef objectForKey:@"FACEBOOK_ID"];
-    
-    NSString *url = [[NSString alloc]initWithFormat:@"http://www1066uj.sakura.ne.jp/bingo/api/entry/createBingoTable.php?userid=%@",fId];
-    NSLog(@"url = %@",url);
-    [pbUrlCon addUrl:url];
-    [pbUrlCon execute];
-    
-    [pbIndicator startIndicator];
-    
-}
+
 
 - (void)didReceiveMemoryWarning
 {

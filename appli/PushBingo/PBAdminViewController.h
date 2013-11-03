@@ -18,4 +18,5 @@
     PBIndicatorView* pbIndicator;
     UIButton *makeIdBtn;
 }
+
 @end

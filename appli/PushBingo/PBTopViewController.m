@@ -252,6 +252,10 @@
     NSString* fbname = [profile objectForKey:@"name"];
     NSString* token = [userDef objectForKey:@"DEVICE_TOKEN"];
 
+    // debug
+    //-- facebook login が使えない状態なので、いったん固定設定
+    fbid = @"1";
+    
     [userDef setObject:fbid forKey:@"FACEBOOK_ID"];
     [userDef setObject:fbname forKey:@"FACEBOOK_NAME"];
     
