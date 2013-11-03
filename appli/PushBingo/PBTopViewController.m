@@ -42,6 +42,8 @@
          action:@selector(tapKiyaku:)  // ボタンが押されたときに呼ばれるメソッドを指定
          ];
         self.navigationItem.rightBarButtonItem = btn;
+        facebookId = [[NSString alloc] init];
+        facebookName = [[NSString alloc] init];
 
     }
     
@@ -172,7 +174,7 @@
         
     }
     else if(targetBtn.tag == 2){
-        PBGuestInputIDViewController* pbGInputCon = [[PBGuestInputIDViewController alloc] init];
+        PBGuestInputIDViewController* pbGInputCon = [[PBGuestInputIDViewController alloc] initWithUserId:facebookId];
         [pbGInputCon setTitle:@"ゲストページ"];
         [self.navigationController pushViewController:pbGInputCon animated:YES];
     }
@@ -248,22 +250,25 @@
     NSDictionary* profile = jsonObj;
     NSUserDefaults *userDef = [NSUserDefaults standardUserDefaults];
 
-    NSString* fbid = [profile objectForKey:@"id"];
-    NSString* fbname = [profile objectForKey:@"name"];
+    facebookId = [profile objectForKey:@"id"];
+    facebookName = [profile objectForKey:@"name"];
+    
+    
+    
     NSString* token = [userDef objectForKey:@"DEVICE_TOKEN"];
 
     // debug
     //-- facebook login が使えない状態なので、いったん固定設定
-    fbid = @"1";
+    facebookId = @"1";
     
-    [userDef setObject:fbid forKey:@"FACEBOOK_ID"];
-    [userDef setObject:fbname forKey:@"FACEBOOK_NAME"];
+    [userDef setObject:facebookId forKey:@"FACEBOOK_ID"];
+    [userDef setObject:facebookName forKey:@"FACEBOOK_NAME"];
     
     [userDef synchronize];
 
-    welcome.text = [[NSString alloc] initWithFormat:@"%@さん" , fbname];
+    welcome.text = [[NSString alloc] initWithFormat:@"%@さん" , facebookName];
     
-    NSString* params = [[NSString alloc] initWithFormat:@"token=%@&fbName=%@&fbId=%@",token,fbid,fbname];
+    NSString* params = [[NSString alloc] initWithFormat:@"token=%@&fbName=%@&fbId=%@",token,facebookId,facebookName];
     
 //    [PBURLConnection postUserInfo:params];
     [PBURLConnection registUserData];

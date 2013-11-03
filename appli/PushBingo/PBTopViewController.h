@@ -12,6 +12,10 @@
 {
     UIButton* buttonLoginLogout;
     UILabel* welcome;
+    
+    NSString* facebookId;
+    NSString* facebookName;
+    
 }
 
 

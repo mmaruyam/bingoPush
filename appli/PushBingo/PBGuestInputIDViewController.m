@@ -26,6 +26,15 @@
     return self;
 }
 
+-(id)initWithUserId:(NSString *)userid
+{
+    self = [super init];
+    if(self){
+        
+    }
+    return self;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];

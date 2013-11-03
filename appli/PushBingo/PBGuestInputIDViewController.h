@@ -14,4 +14,7 @@
     NSMutableArray* aryJoinGameId;
     NSString* bingoId;
 }
+
+-(id)initWithUserId:(NSString *)userid;
+
 @end
