@@ -214,6 +214,8 @@
     NSDictionary* dicStatus = [jsonObj objectAtIndex:0];
     NSString* status = [dicStatus objectForKey:@"status"];
     
+    NSLog(@"statusは%@",status);
+    
     if([status isEqualToString:@"wait"]){
         return YES;
     }

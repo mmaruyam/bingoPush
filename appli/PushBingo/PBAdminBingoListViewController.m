@@ -34,7 +34,7 @@
         strUserID = @"1";
         
         // get table data
-        NSURL *url = 
+        NSURL *url = @"";
     }
     return self;
 }
