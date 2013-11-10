@@ -89,12 +89,11 @@
     
     // Configure the cell...
     NSDictionary *dicPingoData = [aryBingoListData objectAtIndex:indexPath.row];
-    UIImage *imgStatusWait = [UIImage imageNamed:@"wait"];
+    UIImage *imgStatusWait = [UIImage imageNamed:STATUS_ICON_NAME_WAIT];
 
     NSString *strID = [dicPingoData objectForKey:@"id"];
     NSString *strTitle = [dicPingoData objectForKey:@"table_name"];
     NSString *strCreateDate = [dicPingoData objectForKey:@"create"];
-    NSString *strUpdateDate = [dicPingoData objectForKey:@"update"];
     NSString *strStatus = [dicPingoData objectForKey:@"status"];
     
     NSString *strDisplayTitle = [NSString stringWithFormat:@"%@. %@", strID, strTitle];
@@ -110,19 +109,27 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"testtt");
+    NSDictionary *dicPingoData = [aryBingoListData objectAtIndex:indexPath.row];
+    NSString *strStatus = [dicPingoData objectForKey:@"status"];
+    NSString *strBingoID = [dicPingoData objectForKey:@"id"];
+ 
+    // ステータスがfinish だった場合何も処理しない
+    if ([strStatus isEqualToString:STATUS_NAME_FINISH]) {
+        return;
+    }
     
     // update status from wait to start
-    NSString *status = @"start";
-    NSString *strBingoID = [[aryBingoListData objectAtIndex:indexPath.row] objectForKey:@"id"];
-    NSString *url = [[NSString alloc]initWithFormat:@"http://www1066uj.sakura.ne.jp/bingo/api/entry/updateTableStatus.php?tableid=%@&status=%@", strBingoID, status];
-    NSLog(@"updateTableStatus url: %@",url);
+    if ([strStatus isEqualToString:STATUS_NAME_WAIT]) {
+        NSString *strStartStatus = STATUS_NAME_START;
+        NSString *url = [[NSString alloc]initWithFormat:@"http://www1066uj.sakura.ne.jp/bingo/api/entry/updateTableStatus.php?tableid=%@&status=%@", strBingoID, strStartStatus];
+        NSLog(@"updateTableStatus url: %@",url);
+
+        PBURLConnection* pbUrlCon = [[PBURLConnection alloc] init];
+        [pbUrlCon addUrl:url];
+        [pbUrlCon execute];
+    }
     
-    PBURLConnection* pbUrlCon = [[PBURLConnection alloc] init];
-    [pbUrlCon addUrl:url];
-    [pbUrlCon execute];
-    
-    // start bingo game
+    // move to bingo game view
     PBAdminBingoViewController *adminBingoCnt = [[PBAdminBingoViewController alloc] initWithBingoID:strBingoID];
     [self.navigationController pushViewController:adminBingoCnt animated:YES];
 }
