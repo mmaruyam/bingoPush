@@ -42,7 +42,7 @@ class BingoTableManager extends BaseDao
     public function createBingoTable($userid) {
         // master number make
         $aryMasterNumber = makeMasterNumber();
-        $strMasterNumber = json_encode($aryMasterNumber);
+        $strMasterNumber = serialize($aryMasterNumber);
 
         // table 情報格納
         $query = file_get_contents(QUERY_DIR_PATH . 'insert_table_data.sql');
@@ -181,7 +181,7 @@ class BingoTableManager extends BaseDao
             return false;
         }
 
-        $result = $sth->fetchAll();
+        $result = $sth->fetchAll(PDO::FETCH_ASSOC);
 
         return $result;
     }
@@ -196,7 +196,7 @@ class BingoTableManager extends BaseDao
             return false;
         }
 
-        $numbers = json_decode($data[0]['number']);
+        $numbers = unserialize($data[0]['number']);
         $index = $data[0]['num_idx'];
         if ($index == NULL) {
             return array();

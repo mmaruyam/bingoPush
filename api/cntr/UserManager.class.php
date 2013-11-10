@@ -33,7 +33,7 @@ class UserManager extends BaseDao
             return false;
         }
 
-        return $sth->fetchAll();
+        return $sth->fetchAll(PDO::FETCH_COLUMN|PDO::FETCH_GROUP);
     }
 
     public function getError() {
