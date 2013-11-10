@@ -12,7 +12,7 @@
 
 @interface PBAdminBingoListViewController ()
 {
-    NSDictionary *dicBingoListData;
+    NSArray *aryBingoListData;
     NSString *strUserID;
 }
 
@@ -26,7 +26,7 @@
     if (self) {
         // Custom initialization
         // initialize
-        dicBingoListData = [[NSDictionary alloc] init];
+        aryBingoListData = [[NSArray alloc] init];
         
         // userid 取得
         NSUserDefaults *userDef = [NSUserDefaults standardUserDefaults];
@@ -46,8 +46,8 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     // data
-    dicBingoListData = [PBURLConnection getBingoDataFromUserId:strUserID];
-    NSLog(@"dicBingoListData: %@", dicBingoListData);
+    aryBingoListData = [PBURLConnection getBingoDataFromUserId:strUserID];
+    NSLog(@"aryBingoListData: %@", aryBingoListData);
 }
 
 - (void)didReceiveMemoryWarning
@@ -55,6 +55,14 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+#pragma mark - Original Method
++ (CGFloat)calcCellHeight
+{
+    CGFloat cfHeight = 44.0f;
+    return
+}
+
 
 #pragma mark - Table view data source
 
@@ -78,6 +86,8 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     // Configure the cell...
+    NSDictionary *dicPingoData = [aryBingoListData objectAtIndex:indexPath.row];
+    UIView *uvContents = [[UIView alloc] init];
     
     return cell;
 }
