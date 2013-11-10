@@ -8,6 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
-@interface PBConfig : NSObject
+#define CELL_HEIGHT_DEFAULT 44.0f
 
-@end
+#define STATUS_NAME_WAIT @"wait";
+#define STATUS_NAME_START @"start";
+#define STATUS_NAME_FINISH @"finish";
+
+#define STATUS_ICON_NAME_WAIT STATUS_NAME_WAIT
+#define STATUS_ICON_NAME_START STATUS_NAME_START
+#define STATUS_ICON_NAME_FINISH STATUS_NAME_FINISH

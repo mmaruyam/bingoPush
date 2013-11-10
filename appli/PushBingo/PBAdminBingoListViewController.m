@@ -7,6 +7,7 @@
 //
 
 #import "PBAdminBingoListViewController.h"
+#import "PBAdminBingoViewController.h"
 #import "PBURLConnection.h"
 #import "PBIndicatorView.h"
 
@@ -45,9 +46,11 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
+    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"Cell"];
+    
     // data
     aryBingoListData = [PBURLConnection getBingoDataFromUserId:strUserID];
-    NSLog(@"aryBingoListData: %@", aryBingoListData);
+//    NSLog(@"aryBingoListData: %@", aryBingoListData);
 }
 
 - (void)didReceiveMemoryWarning
@@ -59,13 +62,11 @@
 #pragma mark - Original Method
 + (CGFloat)calcCellHeight
 {
-    CGFloat cfHeight = 44.0f;
-    return
+    CGFloat cfHeight = CELL_HEIGHT_DEFAULT;
+    return cfHeight;
 }
 
-
 #pragma mark - Table view data source
-
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
 #warning Potentially incomplete method implementation.
@@ -77,19 +78,53 @@
 {
 #warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    return [aryBingoListData count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     
     // Configure the cell...
     NSDictionary *dicPingoData = [aryBingoListData objectAtIndex:indexPath.row];
-    UIView *uvContents = [[UIView alloc] init];
+    UIImage *imgStatusWait = [UIImage imageNamed:@"wait"];
+
+    NSString *strID = [dicPingoData objectForKey:@"id"];
+    NSString *strTitle = [dicPingoData objectForKey:@"table_name"];
+    NSString *strCreateDate = [dicPingoData objectForKey:@"create"];
+    NSString *strUpdateDate = [dicPingoData objectForKey:@"update"];
+    NSString *strStatus = [dicPingoData objectForKey:@"status"];
+    
+    NSString *strDisplayTitle = [NSString stringWithFormat:@"%@. %@", strID, strTitle];
+    NSString *strDisplaySubTitle = [NSString stringWithFormat:@"作成日: %@", strCreateDate];
+
+    cell.imageView.image = imgStatusWait;
+    cell.textLabel.text = strDisplayTitle;
+    cell.detailTextLabel.text = strDisplaySubTitle;
+    cell.detailTextLabel.numberOfLines = 0;
     
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSLog(@"testtt");
+    
+    // update status from wait to start
+    NSString *status = @"start";
+    NSString *strBingoID = [[aryBingoListData objectAtIndex:indexPath.row] objectForKey:@"id"];
+    NSString *url = [[NSString alloc]initWithFormat:@"http://www1066uj.sakura.ne.jp/bingo/api/entry/updateTableStatus.php?tableid=%@&status=%@", strBingoID, status];
+    NSLog(@"updateTableStatus url: %@",url);
+    
+    PBURLConnection* pbUrlCon = [[PBURLConnection alloc] init];
+    [pbUrlCon addUrl:url];
+    [pbUrlCon execute];
+    
+    // start bingo game
+    PBAdminBingoViewController *adminBingoCnt = [[PBAdminBingoViewController alloc] initWithBingoID:strBingoID];
+    [self.navigationController pushViewController:adminBingoCnt animated:YES];
 }
 
 /*
