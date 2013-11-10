@@ -471,6 +471,7 @@
 		B3C9E4E4180EDEB100A469B6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B3C9E8E2182F57D000A469B6 /* GoogleAdMobAdsSDK-iOS */,
 				13E584EC182618C60020DADF /* FBUserSettingsViewResources.bundle */,
 				13E584EA182618BC0020DADF /* FacebookSDK.framework */,
 				B3C9E535181B6CCD00A469B6 /* Social.framework */,
@@ -759,6 +760,13 @@
 				B3C9E88D181D49AA00A469B6 /* 75_off@2x.png */,
 			);
 			name = masuOff;
+			sourceTree = "<group>";
+		};
+		B3C9E8E2182F57D000A469B6 /* GoogleAdMobAdsSDK-iOS */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "GoogleAdMobAdsSDK-iOS";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1159,6 +1167,7 @@
 				INFOPLIST_FILE = "PushBingo/PushBingo-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1176,6 +1185,7 @@
 				INFOPLIST_FILE = "PushBingo/PushBingo-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
