@@ -7,11 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		13990802182F61B100582011 /* wait.png in Resources */ = {isa = PBXBuildFile; fileRef = 13990801182F61B100582011 /* wait.png */; };
 		139BEA1E18262B2400C2260F /* PBAdminStandbyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 139BEA1D18262B2400C2260F /* PBAdminStandbyViewController.m */; };
 		139BEA241826388300C2260F /* PBAdminBingoListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 139BEA231826388300C2260F /* PBAdminBingoListViewController.m */; };
 		13E584EB182618BC0020DADF /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13E584EA182618BC0020DADF /* FacebookSDK.framework */; };
 		13E584ED182618C60020DADF /* FBUserSettingsViewResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 13E584EC182618C60020DADF /* FBUserSettingsViewResources.bundle */; };
+		13EF7752182F68CF0057F1AA /* wait.png in Resources */ = {isa = PBXBuildFile; fileRef = 13EF7751182F68CF0057F1AA /* wait.png */; };
 		B3C9E4E6180EDEB100A469B6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3C9E4E5180EDEB100A469B6 /* Foundation.framework */; };
 		B3C9E4E8180EDEB100A469B6 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3C9E4E7180EDEB100A469B6 /* CoreGraphics.framework */; };
 		B3C9E4EA180EDEB100A469B6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3C9E4E9180EDEB100A469B6 /* UIKit.framework */; };
@@ -209,7 +209,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		13990801182F61B100582011 /* wait.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = wait.png; path = ../../../../../Pictures/pingo/wait.png; sourceTree = "<group>"; };
 		139BEA1C18262B2400C2260F /* PBAdminStandbyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBAdminStandbyViewController.h; sourceTree = "<group>"; };
 		139BEA1D18262B2400C2260F /* PBAdminStandbyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBAdminStandbyViewController.m; sourceTree = "<group>"; };
 		139BEA221826388300C2260F /* PBAdminBingoListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBAdminBingoListViewController.h; sourceTree = "<group>"; };
@@ -217,6 +216,7 @@
 		139BEAAA182F562700C2260F /* PBConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBConfig.h; sourceTree = "<group>"; };
 		13E584EA182618BC0020DADF /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../../../../../Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
 		13E584EC182618C60020DADF /* FBUserSettingsViewResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = FBUserSettingsViewResources.bundle; path = ../../../../../../Documents/FacebookSDK/FacebookSDK.framework/Versions/A/Resources/FBUserSettingsViewResources.bundle; sourceTree = "<group>"; };
+		13EF7751182F68CF0057F1AA /* wait.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = wait.png; path = image/wait.png; sourceTree = "<group>"; };
 		B3C9E4E2180EDEB100A469B6 /* PushBingo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PushBingo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3C9E4E5180EDEB100A469B6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		B3C9E4E7180EDEB100A469B6 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -455,7 +455,7 @@
 		13990800182F619000582011 /* statusIcon */ = {
 			isa = PBXGroup;
 			children = (
-				13990801182F61B100582011 /* wait.png */,
+				13EF7751182F68CF0057F1AA /* wait.png */,
 			);
 			name = statusIcon;
 			sourceTree = "<group>";
@@ -875,6 +875,7 @@
 				B3C9E8CB181D49AB00A469B6 /* 62_off@2x.png in Resources */,
 				B3C9E841181D434C00A469B6 /* free@2x.png in Resources */,
 				B3C9E809181D3CAB00A469B6 /* 21@2x.png in Resources */,
+				13EF7752182F68CF0057F1AA /* wait.png in Resources */,
 				B3C9E7F7181D3CAB00A469B6 /* 3@2x.png in Resources */,
 				B3C9E835181D3CAB00A469B6 /* 65@2x.png in Resources */,
 				B3C9E834181D3CAB00A469B6 /* 64@2x.png in Resources */,
@@ -899,7 +900,6 @@
 				B3C9E89A181D49AB00A469B6 /* 13_off@2x.png in Resources */,
 				B3C9E8A8181D49AB00A469B6 /* 27_off@2x.png in Resources */,
 				B3C9E82A181D3CAB00A469B6 /* 54@2x.png in Resources */,
-				13990802182F61B100582011 /* wait.png in Resources */,
 				B3C9E6F8181CFD6200A469B6 /* icon-60@2x.png in Resources */,
 				B3C9E823181D3CAB00A469B6 /* 47@2x.png in Resources */,
 				B3C9E4F0180EDEB100A469B6 /* InfoPlist.strings in Resources */,
