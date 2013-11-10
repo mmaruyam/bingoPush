@@ -31,10 +31,6 @@
         // userid 取得
         NSUserDefaults *userDef = [NSUserDefaults standardUserDefaults];
         strUserID = [NSString stringWithString:[userDef objectForKey:@"FACEBOOK_ID"]];
-        
-        // debug
-        //-- facebook login が使えない状態なので、いったん固定設定
-        strUserID = @"1";
     }
     return self;
 }
