@@ -205,6 +205,7 @@
                                                            delegate:self cancelButtonTitle:@"確認" otherButtonTitles:nil];
         pushAlert.tag = 1;
         [pushAlert show];
+        [timerBingoChecker invalidate];
     }
     else if(0<iReach && iReach != iPrevReach){
         [PBURLConnection updateUserStatus:@"reach" bingoID:strBingoId];

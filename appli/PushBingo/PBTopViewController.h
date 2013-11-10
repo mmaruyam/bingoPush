@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "GADBannerView.h"
+#import <iAd/iAd.h>
 
-@interface PBTopViewController : UIViewController <GADBannerViewDelegate>
+@interface PBTopViewController : UIViewController <GADBannerViewDelegate , ADBannerViewDelegate>
 {
     UIButton* buttonLoginLogout;
     UILabel* welcome;
@@ -17,7 +18,14 @@
     NSString* facebookId;
     NSString* facebookName;
     
+    UIButton *adminBtn;
+    UIButton *guestBtn;
+    
+    /* AD 関連 */
     GADBannerView *bannerView_;
+    ADBannerView *iAdBannerView;
+    
+    BOOL isLogin;
     
 }
 

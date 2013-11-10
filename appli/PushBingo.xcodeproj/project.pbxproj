@@ -203,6 +203,7 @@
 		B3C9E8F7182F5CDF00A469B6 /* libGoogleAdMobAds.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B3C9E8F6182F5CDF00A469B6 /* libGoogleAdMobAds.a */; };
 		B3C9E8F9182F5D2800A469B6 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3C9E8F8182F5D2800A469B6 /* AVFoundation.framework */; };
 		B3C9E8FB182F5D6900A469B6 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3C9E8FA182F5D6900A469B6 /* StoreKit.framework */; };
+		B3C9E901182FBB5500A469B6 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3C9E900182FBB5500A469B6 /* iAd.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -443,6 +444,7 @@
 		B3C9E8F6182F5CDF00A469B6 /* libGoogleAdMobAds.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGoogleAdMobAds.a; path = "PushBingo/GoogleAdMobAdsSDK-iOS/libGoogleAdMobAds.a"; sourceTree = "<group>"; };
 		B3C9E8F8182F5D2800A469B6 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		B3C9E8FA182F5D6900A469B6 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		B3C9E900182FBB5500A469B6 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -450,6 +452,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B3C9E901182FBB5500A469B6 /* iAd.framework in Frameworks */,
 				B3C9E8FB182F5D6900A469B6 /* StoreKit.framework in Frameworks */,
 				B3C9E52E181B6CA500A469B6 /* AdSupport.framework in Frameworks */,
 				B3C9E8F9182F5D2800A469B6 /* AVFoundation.framework in Frameworks */,
@@ -512,6 +515,7 @@
 		B3C9E4E4180EDEB100A469B6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B3C9E900182FBB5500A469B6 /* iAd.framework */,
 				B3C9E8FA182F5D6900A469B6 /* StoreKit.framework */,
 				B3C9E8F8182F5D2800A469B6 /* AVFoundation.framework */,
 				B3C9E8F2182F590900A469B6 /* SystemConfiguration.framework */,
@@ -538,6 +542,7 @@
 		B3C9E4EB180EDEB100A469B6 /* PushBingo */ = {
 			isa = PBXGroup;
 			children = (
+				B3C9E8FC182F748500A469B6 /* Guest */,
 				B3C9E6D0181CF94C00A469B6 /* image */,
 				B3C9E53B181B8E6500A469B6 /* Library */,
 				B3C9E53A181B858700A469B6 /* Admin */,
@@ -545,10 +550,6 @@
 				B3C9E4F5180EDEB100A469B6 /* PBAppDelegate.m */,
 				B3C9E514180EDEC000A469B6 /* PBTopViewController.h */,
 				B3C9E515180EDEC000A469B6 /* PBTopViewController.m */,
-				B3C9E518180EE0C100A469B6 /* PBGuestBingoViewController.h */,
-				B3C9E519180EE0C100A469B6 /* PBGuestBingoViewController.m */,
-				B3C9E51E18182E3500A469B6 /* PBGuestInputIDViewController.h */,
-				B3C9E51F18182E3500A469B6 /* PBGuestInputIDViewController.m */,
 				B3C9E8DD181D67BA00A469B6 /* PBAboutThisAppViewController.h */,
 				B3C9E8DE181D67BA00A469B6 /* PBAboutThisAppViewController.m */,
 				B3C9E4EC180EDEB100A469B6 /* Supporting Files */,
@@ -826,6 +827,17 @@
 				B3C9E8EB182F58BA00A469B6 /* GADRequestError.h */,
 			);
 			name = "GoogleAdMobAdsSDK-iOS";
+			sourceTree = "<group>";
+		};
+		B3C9E8FC182F748500A469B6 /* Guest */ = {
+			isa = PBXGroup;
+			children = (
+				B3C9E518180EE0C100A469B6 /* PBGuestBingoViewController.h */,
+				B3C9E519180EE0C100A469B6 /* PBGuestBingoViewController.m */,
+				B3C9E51E18182E3500A469B6 /* PBGuestInputIDViewController.h */,
+				B3C9E51F18182E3500A469B6 /* PBGuestInputIDViewController.m */,
+			);
+			name = Guest;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1173,7 +1185,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
@@ -1207,7 +1219,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};

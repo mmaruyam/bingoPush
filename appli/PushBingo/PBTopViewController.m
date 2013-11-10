@@ -44,6 +44,7 @@
         self.navigationItem.rightBarButtonItem = btn;
         facebookId = [[NSString alloc] init];
         facebookName = [[NSString alloc] init];
+        isLogin  = NO;
 
     }
     
@@ -75,7 +76,7 @@
     
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    UIButton *adminBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    adminBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     adminBtn.frame = CGRectMake((self.view.frame.size.width - 150)/2, 270, 150, 44);
     [adminBtn setTitle:@"つくる" forState:UIControlStateNormal];
     adminBtn.titleLabel.font = [UIFont boldSystemFontOfSize:18.0f];
@@ -90,7 +91,7 @@
 
     [self.view addSubview:adminBtn];
     
-    UIButton *guestBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    guestBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     guestBtn.frame = CGRectMake((self.view.frame.size.width - 150)/2, 330, 150, 44);
     [guestBtn setTitle:@"さんか" forState:UIControlStateNormal];
     guestBtn.titleLabel.font = [UIFont boldSystemFontOfSize:18.0f];
@@ -142,53 +143,12 @@
     }
     
     
-    //adMob
-    
-    bannerView_ = [[GADBannerView alloc]
-                   initWithFrame:CGRectMake(0.0,
-                                            self.view.frame.size.height -
-                                            GAD_SIZE_320x50.height,
-                                            GAD_SIZE_320x50.width,
-                                            GAD_SIZE_320x50.height)];
-    
-    NSLog(@"hogehoge = %@",bannerView_);
-    
-
-    NSString* ident = @"0c8c8f634605d363f156ab630b98d14838a547b8";
-    bannerView_.adUnitID = @"1412404935007723";
-    bannerView_.rootViewController = self;
-    
-    [self.view addSubview:bannerView_];
-    GADRequest *request = [GADRequest request];
-    
-    [request setBirthdayWithMonth:3 day:13 year:1976];
-    request.testDevices = [NSArray arrayWithObjects:
-                           GAD_SIMULATOR_ID,
-                           ident,
-                           nil];
+    iAdBannerView = [[ADBannerView alloc] initWithFrame:CGRectMake(0,self.view.frame.size.height - 50,320,50)];
+    [iAdBannerView setAutoresizingMask:UIViewAutoresizingFlexibleHeight];
+    iAdBannerView.delegate = self;
+    [self.view addSubview:iAdBannerView];
     
     
-    
-    NSLog(@"testhoge = %@",request.testDevices);
-    [bannerView_ setDelegate:self];
-    [bannerView_ loadRequest:request];
-    
-    
-}
-
-- (void)adViewDidReceiveAd:(GADBannerView *)bannerView
-{
-    NSLog(@"aiuaiuaiuaiuia.");
-}
-
-- (void)adView:(GADBannerView *)view didFailToReceiveAdWithError:(GADRequestError *)error
-{
-    NSLog(@"mob error = %@",error);
-    NSLog(@"mob error = %d",error.code);
-}
-
-- (void)adViewWillPresentScreen:(GADBannerView *)adView{
-    NSLog(@"error2");
 }
 
 -(void)changeGray:(id)sender
@@ -266,7 +226,7 @@
         // valid account UI is shown whenever the session is open
         
         [buttonLoginLogout setTitle:@"ログアウト" forState:UIControlStateNormal];
-        
+        isLogin = YES;
         /*
         [textNoteOrLink setText:[NSString stringWithFormat:@"https://graph.facebook.com/me/friends?access_token=%@",
                                       appDelegate.session.accessTokenData.accessToken]];
@@ -280,8 +240,12 @@
         // login-needed account UI is shown whenever the session is closed
         [buttonLoginLogout setTitle:@"ログイン" forState:UIControlStateNormal];
         NSLog(@"no Log in");
+        isLogin = NO;
         welcome.text = @"まずはログインしてください。";
     }
+    
+    guestBtn.enabled = isLogin;
+    adminBtn.enabled = isLogin;
 }
 
 -(void)getFBProfileData:(NSString *)url
@@ -323,6 +287,71 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - admob
+
+-(void)requestAdMob
+{
+    bannerView_ = [[GADBannerView alloc]
+                   initWithFrame:CGRectMake(0.0,
+                                            self.view.frame.size.height -
+                                            GAD_SIZE_320x50.height,
+                                            GAD_SIZE_320x50.width,
+                                            GAD_SIZE_320x50.height)];
+    
+    NSLog(@"hogehoge = %@",bannerView_);
+    
+    
+    NSString* ident = @"0c8c8f634605d363f156ab630b98d14838a547b8";
+    bannerView_.adUnitID = @"1412404935007723";
+    bannerView_.rootViewController = self;
+    
+    [self.view addSubview:bannerView_];
+    GADRequest *request = [GADRequest request];
+    
+    
+    request.testDevices = [NSArray arrayWithObjects:
+                           GAD_SIMULATOR_ID,
+                           ident,
+                           nil];
+    
+    
+    request.testing = YES;
+    
+    
+    NSLog(@"testhoge = %@",request.testDevices);
+    [request setTesting:YES];
+    [bannerView_ setDelegate:self];
+    [bannerView_ loadRequest:request];
+}
+
+- (void)adViewDidReceiveAd:(GADBannerView *)bannerView
+{
+    NSLog(@"admobの読み込みが完了しました");
+}
+
+- (void)adView:(GADBannerView *)view didFailToReceiveAdWithError:(GADRequestError *)error
+{
+    NSLog(@"admobの読み込みに失敗しました");
+    NSLog(@"エラー内容は、%@",error);
+    
+    if(error.code == kGADErrorNoFill){
+        NSLog(@"リクエストに成功しているが、表示する広告がありません");
+    }
+    
+}
+
+#pragma mark - iAd
+//iAdの読み込みに失敗したら呼ばれる
+- (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error{
+    NSLog(@"iAdの読み込みに失敗しました");
+    NSLog(@"エラー内容は、%@",error);
+    NSLog(@"admobの表示準備をします");
+//    [self requestAdMob];
+}
+-(void)bannerViewDidLoadAd:(ADBannerView *)banner{
+    NSLog(@"iAdの読み込みに成功しました");
 }
 
 @end
