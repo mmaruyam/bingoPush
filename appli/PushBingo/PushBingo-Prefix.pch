@@ -5,6 +5,7 @@
 //
 
 #import <Availability.h>
+#import "PBConfig.h"
 
 //ユーザが参加しているビンゴゲームID一覧
 #define JOIN_BINGO_GAME_ID @"JOIN_BINGO_GAME_ID"

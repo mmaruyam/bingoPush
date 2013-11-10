@@ -11,6 +11,7 @@
 		139BEA241826388300C2260F /* PBAdminBingoListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 139BEA231826388300C2260F /* PBAdminBingoListViewController.m */; };
 		13E584EB182618BC0020DADF /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13E584EA182618BC0020DADF /* FacebookSDK.framework */; };
 		13E584ED182618C60020DADF /* FBUserSettingsViewResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 13E584EC182618C60020DADF /* FBUserSettingsViewResources.bundle */; };
+		13EF7752182F68CF0057F1AA /* wait.png in Resources */ = {isa = PBXBuildFile; fileRef = 13EF7751182F68CF0057F1AA /* wait.png */; };
 		B3C9E4E6180EDEB100A469B6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3C9E4E5180EDEB100A469B6 /* Foundation.framework */; };
 		B3C9E4E8180EDEB100A469B6 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3C9E4E7180EDEB100A469B6 /* CoreGraphics.framework */; };
 		B3C9E4EA180EDEB100A469B6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3C9E4E9180EDEB100A469B6 /* UIKit.framework */; };
@@ -219,8 +220,10 @@
 		139BEA1D18262B2400C2260F /* PBAdminStandbyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBAdminStandbyViewController.m; sourceTree = "<group>"; };
 		139BEA221826388300C2260F /* PBAdminBingoListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBAdminBingoListViewController.h; sourceTree = "<group>"; };
 		139BEA231826388300C2260F /* PBAdminBingoListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBAdminBingoListViewController.m; sourceTree = "<group>"; };
+		139BEAAA182F562700C2260F /* PBConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBConfig.h; sourceTree = "<group>"; };
 		13E584EA182618BC0020DADF /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../../../../../Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
 		13E584EC182618C60020DADF /* FBUserSettingsViewResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = FBUserSettingsViewResources.bundle; path = ../../../../../../Documents/FacebookSDK/FacebookSDK.framework/Versions/A/Resources/FBUserSettingsViewResources.bundle; sourceTree = "<group>"; };
+		13EF7751182F68CF0057F1AA /* wait.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = wait.png; path = image/wait.png; sourceTree = "<group>"; };
 		B3C9E4E2180EDEB100A469B6 /* PushBingo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PushBingo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3C9E4E5180EDEB100A469B6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		B3C9E4E7180EDEB100A469B6 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -479,6 +482,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		13990800182F619000582011 /* statusIcon */ = {
+			isa = PBXGroup;
+			children = (
+				13EF7751182F68CF0057F1AA /* wait.png */,
+			);
+			name = statusIcon;
+			sourceTree = "<group>";
+		};
 		B3C9E4D9180EDEB100A469B6 = {
 			isa = PBXGroup;
 			children = (
@@ -554,6 +565,7 @@
 				B3C9E4EE180EDEB100A469B6 /* InfoPlist.strings */,
 				B3C9E4F1180EDEB100A469B6 /* main.m */,
 				B3C9E4F3180EDEB100A469B6 /* PushBingo-Prefix.pch */,
+				139BEAAA182F562700C2260F /* PBConfig.h */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -620,6 +632,7 @@
 		B3C9E6D0181CF94C00A469B6 /* image */ = {
 			isa = PBXGroup;
 			children = (
+				13990800182F619000582011 /* statusIcon */,
 				B3C9E8DB181D65AA00A469B6 /* frame@2x.png */,
 				B3C9E842181D499A00A469B6 /* masuOff */,
 				B3C9E7A9181D3C9D00A469B6 /* masu */,
@@ -908,6 +921,7 @@
 				B3C9E8CB181D49AB00A469B6 /* 62_off@2x.png in Resources */,
 				B3C9E841181D434C00A469B6 /* free@2x.png in Resources */,
 				B3C9E809181D3CAB00A469B6 /* 21@2x.png in Resources */,
+				13EF7752182F68CF0057F1AA /* wait.png in Resources */,
 				B3C9E7F7181D3CAB00A469B6 /* 3@2x.png in Resources */,
 				B3C9E835181D3CAB00A469B6 /* 65@2x.png in Resources */,
 				B3C9E834181D3CAB00A469B6 /* 64@2x.png in Resources */,
