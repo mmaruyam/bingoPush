@@ -141,6 +141,54 @@
         }
     }
     
+    
+    //adMob
+    
+    bannerView_ = [[GADBannerView alloc]
+                   initWithFrame:CGRectMake(0.0,
+                                            self.view.frame.size.height -
+                                            GAD_SIZE_320x50.height,
+                                            GAD_SIZE_320x50.width,
+                                            GAD_SIZE_320x50.height)];
+    
+    NSLog(@"hogehoge = %@",bannerView_);
+    
+
+    NSString* ident = @"0c8c8f634605d363f156ab630b98d14838a547b8";
+    bannerView_.adUnitID = @"1412404935007723";
+    bannerView_.rootViewController = self;
+    
+    [self.view addSubview:bannerView_];
+    GADRequest *request = [GADRequest request];
+    
+    [request setBirthdayWithMonth:3 day:13 year:1976];
+    request.testDevices = [NSArray arrayWithObjects:
+                           GAD_SIMULATOR_ID,
+                           ident,
+                           nil];
+    
+    
+    
+    NSLog(@"testhoge = %@",request.testDevices);
+    [bannerView_ setDelegate:self];
+    [bannerView_ loadRequest:request];
+    
+    
+}
+
+- (void)adViewDidReceiveAd:(GADBannerView *)bannerView
+{
+    NSLog(@"aiuaiuaiuaiuia.");
+}
+
+- (void)adView:(GADBannerView *)view didFailToReceiveAdWithError:(GADRequestError *)error
+{
+    NSLog(@"mob error = %@",error);
+    NSLog(@"mob error = %d",error.code);
+}
+
+- (void)adViewWillPresentScreen:(GADBannerView *)adView{
+    NSLog(@"error2");
 }
 
 -(void)changeGray:(id)sender
