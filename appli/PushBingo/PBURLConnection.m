@@ -185,7 +185,7 @@
     return  YES;
 }
 
-+(NSDictionary *)getBingoDataFromUserId:(NSString *)uid
++(NSArray *)getBingoDataFromUserId:(NSString *)uid
 {
     NSString* url = [[NSString alloc] initWithFormat:@"http://www1066uj.sakura.ne.jp/bingo/api/entry/getBingoData.php?userid=%@",uid];
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];

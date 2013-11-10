@@ -136,10 +136,6 @@
     NSUserDefaults *userDef = [NSUserDefaults standardUserDefaults];
     NSString* fId   = [userDef objectForKey:@"FACEBOOK_ID"];
     
-    // debug
-    //-- facebook login が使えない状態なので、いったん固定設定
-    fId = @"1";
-    
     NSString *url = [[NSString alloc]initWithFormat:@"http://www1066uj.sakura.ne.jp/bingo/api/entry/createBingoTable.php?userid=%@",fId];
     NSLog(@"url = %@",url);
     [pbUrlCon addUrl:url];

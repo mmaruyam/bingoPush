@@ -43,7 +43,7 @@
 +(BOOL)isJoinBingoFromUserid:(NSString *)uid tableId:(NSString *)tid;
 
 //管理しているビンゴデータを返します
-+(NSDictionary *)getBingoDataFromUserId:(NSString *)uid;
++(NSArray *)getBingoDataFromUserId:(NSString *)uid;
 
 //ビンゴに参加できるかどうかを取得します
 +(BOOL)getBingoStatus:(NSString *)tid;

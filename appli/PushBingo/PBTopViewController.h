@@ -7,14 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GADBannerView.h"
 
-@interface PBTopViewController : UIViewController
+@interface PBTopViewController : UIViewController <GADBannerViewDelegate>
 {
     UIButton* buttonLoginLogout;
     UILabel* welcome;
     
     NSString* facebookId;
     NSString* facebookName;
+    
+    GADBannerView *bannerView_;
     
 }
 
