@@ -176,9 +176,14 @@
     
     NSError* error;
     id json = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&error];
+    NSLog(@"json_data: %@", json);
     NSUserDefaults *userDef = [NSUserDefaults standardUserDefaults];
-    [userDef setObject:json forKey:@"ADMIN_PLAY_NUMBER"];
+    [userDef setObject:json[0] forKey:@"ADMIN_PLAY_NUMBER"];
 //    NSLog(@"json: %@", json);
+    NSString *strIndex = json[1];
+    if (strIndex != nil && strIndex != NULL && [strIndex isEqualToString:@""] == NO) {
+        indexNum = [json[1] intValue];
+    }
     
     _pullBtn.enabled = YES;
 }
