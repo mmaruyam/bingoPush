@@ -162,6 +162,7 @@
     PBURLConnection* pbUrlCon = [[PBURLConnection alloc] init];
     pbUrlCon.delegate = self;
     NSString *url = [NSString stringWithFormat:@"http://www1066uj.sakura.ne.jp/bingo/api/entry/getPingoNumberFromDB.php?tableid=%@", _strBingoID];
+    NSLog(@"getPingoNumberFromDB URL = %@" , url);
     [pbUrlCon addUrl:url];
     [pbUrlCon execute];
 
@@ -181,9 +182,14 @@
     [userDef setObject:json[0] forKey:@"ADMIN_PLAY_NUMBER"];
 //    NSLog(@"json: %@", json);
     NSString *strIndex = json[1];
-    if (strIndex != nil && strIndex != NULL && [strIndex isEqualToString:@""] == NO) {
+    
+    if([strIndex isEqual:[NSNull null]]){
+        indexNum = 0;
+    }
+    else{
         indexNum = [json[1] intValue];
     }
+
     
     _pullBtn.enabled = YES;
 }

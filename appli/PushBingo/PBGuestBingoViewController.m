@@ -46,51 +46,26 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
 
+    //ios7以上のときはナビゲーションバーの裏にビューが入り込まないようにする
+    if (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_6_1) {
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+    }
+    
     dicMasuData = [[NSDictionary alloc] init];
-
-    UIImageView *bView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"b"]];
-    UIImageView *iView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"i"]];
-    UIImageView *nView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"n"]];
-    UIImageView *gView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"g"]];
-    UIImageView *oView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"o"]];
     
-    CGSize bingoSize = [UIImage imageNamed:@"b"].size;
-    CGFloat offSetX = 10.0f;
-    CGFloat offSetY = 70.0f;
-    
-    bView.frame = CGRectMake(offSetX,offSetY,bingoSize.width,bingoSize.height);
-    offSetX += bingoSize.width;
-    iView.frame = CGRectMake(offSetX,offSetY,bingoSize.width,bingoSize.height);
-    offSetX += bingoSize.width;
-    nView.frame = CGRectMake(offSetX,offSetY,bingoSize.width,bingoSize.height);
-    offSetX += bingoSize.width;
-    gView.frame = CGRectMake(offSetX,offSetY,bingoSize.width,bingoSize.height);
-    offSetX += bingoSize.width;
-    oView.frame = CGRectMake(offSetX,offSetY,bingoSize.width,bingoSize.height);
-    
-    [self.view addSubview:bView];
-    [self.view addSubview:iView];
-    [self.view addSubview:nView];
-    [self.view addSubview:gView];
-    [self.view addSubview:oView];
-    
-    offSetX = 10.0f;
-    offSetY += bingoSize.height;
-    
-    UIImageView* bingoFrame = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"frame"]];
-    bingoFrame.frame = CGRectMake(0 , offSetY -10.0f, bingoFrame.frame.size.width,bingoFrame.frame.size.height);
-    
+    UIImageView* bingoFrame = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bg_bingo"]];
+    bingoFrame.frame = CGRectMake(0 , 0, bingoFrame.frame.size.width,bingoFrame.frame.size.height);
+    [self.view addSubview:bingoFrame];
     
     UIView* bingoCard = [self makeBingoCard];
-    bingoCard.frame = CGRectMake(offSetX,offSetY,bingoCard.frame.size.width,bingoCard.frame.size.height);
-    [self.view addSubview:bingoCard];
+    [bingoFrame addSubview:bingoCard];
     
     label = [[UILabel alloc] initWithFrame:CGRectMake(30,400,220,40)];
     label.text = @"ビンゴ　0 : リーチ  1";
     label.backgroundColor = [UIColor lightGrayColor];
 //    [self.view addSubview:label];
     
-    [self.view addSubview:bingoFrame];
+    
     
     pbIndicator = [[PBIndicatorView alloc] init];
     [self.view addSubview:pbIndicator];
@@ -320,27 +295,28 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
     
     UIImage* imageMasu = [UIImage imageNamed:@"1"];
     
-    UIView* baseView = [[UIView alloc] initWithFrame:CGRectMake(0,0,imageMasu.size.width*5,imageMasu.size.height*5)];
-    baseView.backgroundColor = [UIColor lightGrayColor];
+    UIView* baseView = [[UIView alloc] initWithFrame:CGRectMake(0,55,self.view.frame.size.width,self.view.frame.size.height)];
+    baseView.backgroundColor = [UIColor clearColor];
     
     for(int i = 0; i < 5; i++){
         for(int j = 0; j< 5; j++){
             
             UIButton* tmpBtn = [UIButton buttonWithType:UIButtonTypeCustom];
             if(i == 2 && j == 2){
-                [tmpBtn setBackgroundImage:[UIImage imageNamed:@"free"] forState:UIControlStateDisabled];
-                tmpBtn.frame = CGRectMake(i*(imageMasu.size.width), j*(imageMasu.size.height), imageMasu.size.width, imageMasu.size.height);
-                tmpBtn.enabled = NO;
-                tmpBtn.tag = (j+1)+(5*i);
+//                [tmpBtn setBackgroundImage:[UIImage imageNamed:@"free"] forState:UIControlStateDisabled];
+//                tmpBtn.frame = CGRectMake(i*(imageMasu.size.width), j*(imageMasu.size.height), imageMasu.size.width, imageMasu.size.height);
+//                tmpBtn.enabled = NO;
+//                tmpBtn.tag = (j+1)+(5*i);
             }
             else{
                 NSString* strI = [[NSString alloc] initWithFormat:@"%d",i];
                 NSString* masuData = [[dicMasuData objectForKey:strI] objectAtIndex:j];
                 UIImage* imageMasu = [UIImage imageNamed:@"1"];
-                NSString* hoge = [[NSString alloc] initWithFormat:@"%@",masuData];
+//                NSString* hoge = [[NSString alloc] initWithFormat:@"%@",masuData];
                 
-                [tmpBtn setImage:[UIImage imageNamed:hoge] forState:UIControlStateNormal];
-                tmpBtn.frame = CGRectMake(i*(imageMasu.size.width), j*(imageMasu.size.height), imageMasu.size.width, imageMasu.size.height);
+                [tmpBtn setImage:[UIImage imageNamed:@"bg_num_off"] forState:UIControlStateNormal];
+                [tmpBtn setImage:[UI] forState:<#(UIControlState)#>]
+                tmpBtn.frame = CGRectMake(i*(imageMasu.size.width) + 5.0f*i, j*(imageMasu.size.height) + 5.0f*j, imageMasu.size.width, imageMasu.size.height);
                 tmpBtn.enabled = YES;
                 tmpBtn.tag = (j+1)+(5*i);
                 [tmpBtn addTarget:self action:@selector(tapBingoMasu:)forControlEvents:UIControlEventTouchDown];

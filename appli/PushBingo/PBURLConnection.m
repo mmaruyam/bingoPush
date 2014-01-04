@@ -178,7 +178,7 @@
     
     id jsonObj = [NSJSONSerialization JSONObjectWithData:json_data options:NSJSONReadingAllowFragments error:&error];
     
-    NSLog(@"ひいた番号を登録しました %@ , %@",jsonObj,error);
+    NSLog(@"ひいた番号を登録しました 結果 = %@ , エラー = %@",jsonObj,error);
     
     return  YES;
 }
