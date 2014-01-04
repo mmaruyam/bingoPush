@@ -250,8 +250,6 @@
     NSError* error;
     id json = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&error];
     NSLog(@"data = %@",json);
-
-    NSLog(@"takumi takumi takumi");
     
 }
 

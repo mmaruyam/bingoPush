@@ -53,7 +53,6 @@
 
 -(void)tapKiyaku:(id)sender
 {
-    NSLog(@"hogehogehogehoeg kiyaku ");
     PBAboutThisAppViewController* aboutCnt = [[PBAboutThisAppViewController alloc] init];
     
     
@@ -220,8 +219,6 @@
      PBAppDelegate *appDelegate = [[UIApplication sharedApplication]delegate];
     NSLog(@"updateView");
     
-    NSLog(@"hogehoge = %d",appDelegate.session.isOpen);
-    
     if (appDelegate.session.isOpen) {
         // valid account UI is shown whenever the session is open
         
@@ -256,8 +253,6 @@
     NSError *error=nil;
     
     id jsonObj = [NSJSONSerialization JSONObjectWithData:json_data options:NSJSONReadingAllowFragments error:&error];
-    
-    NSLog(@"tototo = %@",jsonObj);
     
     NSDictionary* profile = jsonObj;
     NSUserDefaults *userDef = [NSUserDefaults standardUserDefaults];
@@ -300,7 +295,6 @@
                                             GAD_SIZE_320x50.width,
                                             GAD_SIZE_320x50.height)];
     
-    NSLog(@"hogehoge = %@",bannerView_);
     
     
     NSString* ident = @"0c8c8f634605d363f156ab630b98d14838a547b8";
@@ -319,8 +313,6 @@
     
     request.testing = YES;
     
-    
-    NSLog(@"testhoge = %@",request.testDevices);
     [request setTesting:YES];
     [bannerView_ setDelegate:self];
     [bannerView_ loadRequest:request];

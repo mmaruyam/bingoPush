@@ -33,8 +33,6 @@
                                            returningResponse:&response
                                                        error:&error];
     
-    NSLog(@"takumi = %@ %@",result,error);
-    
 }
 
 +(void)registUserData
