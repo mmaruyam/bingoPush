@@ -93,8 +93,6 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    NSLog(@"kkkkk = %d",self.isLoad);
-    
     [pbIndicator startIndicator];
     
     PBURLConnection* pbUrlCon = [[PBURLConnection alloc] init];
@@ -113,6 +111,9 @@
     
     NSLog(@"ひいた番号（timer) %@",aryPullNumber);
     
+    //debug
+    //aryPullNumber = @[@"8" , @"25" , @"34" , @"58" , @"64"];
+    
     
     for(NSString* pull in aryPullNumber){
         NSInteger index = 0;
@@ -127,9 +128,9 @@
                 
                 if([strMasuData isEqualToString:strPullNum]){
                     
-                    UIButton* hogeBtn = [maryBingoMasu objectAtIndex:index];
-                    
-                    hogeBtn.enabled = NO;
+                    UIButton* targetBtn = [maryBingoMasu objectAtIndex:index];
+                    targetBtn.titleLabel.textColor = [UIColor whiteColor];
+                    targetBtn.enabled = NO;
                 }
                 index++;
             }
@@ -158,7 +159,6 @@
 
 -(void)viewWillDisappear:(BOOL)animated
 {
-    NSLog(@"timer をとめます");
     [timerBingoChecker invalidate];
 }
 
@@ -310,17 +310,21 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
             }
             else{
                 NSString* strI = [[NSString alloc] initWithFormat:@"%d",i];
-                NSString* masuData = [[dicMasuData objectForKey:strI] objectAtIndex:j];
-                UIImage* imageMasu = [UIImage imageNamed:@"1"];
+                NSString* masuData = [[NSString alloc] initWithFormat:@"%@" , [[dicMasuData objectForKey:strI] objectAtIndex:j]];
+                UIImage* imageMasu = [UIImage imageNamed:@"bg_num_off"];
 //                NSString* hoge = [[NSString alloc] initWithFormat:@"%@",masuData];
                 
-                [tmpBtn setImage:[UIImage imageNamed:@"bg_num_off"] forState:UIControlStateNormal];
-                [tmpBtn setImage:[UI] forState:<#(UIControlState)#>]
-                tmpBtn.frame = CGRectMake(i*(imageMasu.size.width) + 5.0f*i, j*(imageMasu.size.height) + 5.0f*j, imageMasu.size.width, imageMasu.size.height);
+                
+                [tmpBtn setTitle:masuData forState:UIControlStateNormal];
+                [tmpBtn setBackgroundImage:[UIImage imageNamed:@"bg_num_off"] forState:UIControlStateNormal];
+                [tmpBtn setBackgroundImage:[self judgeNumberBgImage:i] forState:UIControlStateDisabled];
+                [tmpBtn setFrame:CGRectMake(i*(imageMasu.size.width) + 5.0f*i, j*(imageMasu.size.height) + 5.0f*j, imageMasu.size.width, imageMasu.size.height)];
+                tmpBtn.titleLabel.font = [UIFont systemFontOfSize:28.0f];
+                tmpBtn.titleLabel.textColor = [UIColor redColor];
                 tmpBtn.enabled = YES;
                 tmpBtn.tag = (j+1)+(5*i);
                 [tmpBtn addTarget:self action:@selector(tapBingoMasu:)forControlEvents:UIControlEventTouchDown];
-                
+//                tmpBtn.enabled = NO;
                 
             }
             [maryBingoMasu addObject:tmpBtn];
@@ -332,6 +336,31 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
     return baseView;
 }
 
+-(UIImage *)judgeNumberBgImage:(NSInteger)num
+{
+    UIImage* image;
+    switch (num) {
+        case 0:
+            image = [UIImage imageNamed:@"bg_num01_on"];
+            break;
+        case 1:
+            image = [UIImage imageNamed:@"bg_num02_on"];
+            break;
+        case 2:
+            image = [UIImage imageNamed:@"bg_num03_on"];
+            break;
+        case 3:
+            image = [UIImage imageNamed:@"bg_num04_on"];
+            break;
+        case 4:
+            image = [UIImage imageNamed:@"bg_num05_on"];
+            break;
+        default:
+            break;
+    }
+    
+    return image;
+}
 
 -(void)tapBingoMasu:(id)sender
 {
